@@ -2,7 +2,7 @@ Pokédex Mémoire — version à héberger (pas de limite de taille)
 1. Mets TOUS les fichiers de ce dossier à la racine d'un site (ex. dépôt GitHub → Settings → Pages → branche main, dossier /root).
 2. Ouvre l'adresse dans Safari → Partager → « Sur l'écran d'accueil » : l'appli marche ensuite hors ligne.
 3. Ta progression ne suit pas toute seule : dans l'ancienne version, Réglages → Exporter ; dans la nouvelle, Réglages → Importer.
-Chaque nouvelle version : remplace simplement les fichiers, l'appli se met à jour toute seule (cache 99dc4a35db).
+Chaque nouvelle version : remplace simplement les fichiers, l'appli se met à jour toute seule (cache 750c3e253f).
 
 Synchronisation entre appareils (facultatif) :
 - Elle utilise une petite fonction Netlify (dossier netlify/, package.json, netlify.toml) qui n'est PAS installée par le glisser-déposer.

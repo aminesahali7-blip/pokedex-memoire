@@ -856,6 +856,49 @@ body .dyck{width:auto!important;padding:0 10px!important;border-radius:999px!imp
 .dygot{text-align:left;line-height:1.6;font-size:13px}
 #pkupd{position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top,0px));z-index:9500;padding:8px 8px 8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.4);font-family:var(--dex);font-size:13px;display:flex;align-items:center;gap:8px}
 #pkupd button{width:auto!important;margin:0!important;min-height:0;padding:6px 12px!important;font-size:12px!important;border-radius:999px}
+/* ===== Safari / Duel : silhouette sur écran LCD (le filtre noir était écrasé par le style des images de carte) ===== */
+#card .sil{position:relative;margin:4px auto 12px;padding:14px;border-radius:20px;border:3px solid color-mix(in srgb,var(--tx) 82%,var(--bg));box-shadow:inset 0 4px 14px rgba(0,0,0,.35),0 0 0 5px color-mix(in srgb,var(--bd) 70%,transparent);
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 0,var(--lcd),var(--lcd2))}
+#card .sil img{width:150px;height:150px;margin:0 auto;filter:brightness(0)!important;animation:none;transition:filter .6s,transform .4s}
+html.kbd #card .sil img{width:96px;height:96px}
+#card .sil.rv img{filter:none!important;transform:scale(1.08)}
+#card .sil.shiny img{filter:brightness(0) drop-shadow(0 0 10px gold)!important}
+#card .sil.shiny.rv img{filter:hue-rotate(150deg) saturate(1.6) drop-shadow(0 0 12px gold)!important}
+#card .hp{font-family:var(--dex)}#card .hp i{transition:width .5s ease}
+#card .sil{background:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 0,#e4f7ea,#bfe3cc)!important}
+/* ===== Accessibilité : focus visible au clavier, mouvements réduits ===== */
+:focus-visible{outline:3px solid var(--lens)!important;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.tilt3d{transform:none!important}}
+/* état de la synchro dans l'en-tête */
+.sync-dot{position:absolute;top:2px;right:2px;width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 2px var(--card)}.sync-dot.err{background:var(--ko)}.sync-dot.busy{background:var(--gold)}
+/* évolution : écran LCD et grands sprites */
+#card .pbevo .pbevs{height:170px;margin:8px 0 12px;border-radius:20px;border:3px solid color-mix(in srgb,var(--tx) 82%,var(--bg));background:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 0,#e4f7ea,#bfe3cc);box-shadow:inset 0 4px 14px rgba(0,0,0,.3)}
+#card .pbevo .pbevs img{width:150px!important;height:150px!important;top:10px;left:50%;margin-left:-75px!important;object-fit:contain}
+#card .pbevo .pbevs img.hdx{image-rendering:auto}
+#card .pbmd img.hdx{width:96px!important;height:96px!important;object-fit:contain;image-rendering:auto}
+/* ===== Écran de fin commun, Sprint, filtres du Pokédex ===== */
+.mdend{text-align:center}.mdend .mdic{font-size:56px;padding:14px}.mdti{font-size:18px}
+.mdend .rvst{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.mdl{margin:6px 0}.mdb{display:flex;flex-direction:column;gap:8px;margin-top:12px}.mdb button{margin:0!important}
+.spt i{background:linear-gradient(90deg,#4fdc8e,#f5b81c)!important;transition:width .2s linear}.spt i.low{background:linear-gradient(90deg,#ff4352,#ff8a5a)!important;animation:znw .6s ease-in-out infinite}
+.mdf{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 10px}
+body .mdf button{width:auto!important;margin:0!important;min-height:32px;padding:4px 10px!important;font-size:12px!important;border-radius:99px}
+body .mdf button.on{background:linear-gradient(180deg,color-mix(in srgb,var(--shell) 80%,#fff),var(--shell))!important;color:#fff!important;border-color:transparent!important}
+.mdf small{margin-left:auto;color:var(--mut);font-size:12px}
+#card .dx .tl.cgd::after{content:"⚔";position:absolute;top:2px;right:4px;font-size:10px;opacity:.8}
+#card .dx .tl.shd::before{content:"✨";position:absolute;top:2px;left:4px;font-size:10px}
+#card .dx .tl{position:relative}
+.mdend .rvst{display:grid;gap:8px;margin:10px 0}
+/* duel : portrait de Blue */
+.dubl{display:flex;align-items:center;gap:10px;margin:0 0 8px;padding:6px 10px;border-radius:16px;background:var(--glass);border:1px solid var(--bd)}
+.dupt{width:52px;height:52px;flex:none;background-size:200% 100%;background-position:0 0;background-repeat:no-repeat;image-rendering:pixelated}
+.dubl p{margin:0;font-size:12.5px;font-style:italic;color:var(--mut);text-align:left;line-height:1.35}
+/* onglets du menu Jeu : jamais plus larges que l'écran (libellés anglais plus longs) */
+.uxtabs{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body #card .uxtabs .tb{min-width:0;width:auto!important}
+@media (max-width:360px){body #card .uxtabs .tb{font-size:12px!important;padding:6px 2px!important}}
+body #card .uxtabs .tb{white-space:normal!important;text-overflow:clip!important;overflow:visible!important;line-height:1.15}
+@media (max-width:400px){body #card .uxtabs .tb{font-size:12px!important;letter-spacing:-.01em}}
 </style>
 </head>
 <body>
@@ -916,7 +959,7 @@ const FRF={normal:"Normal",fire:"Feu",water:"Eau",grass:"Plante",electric:"Élec
 let FRT=FRF;
 const CO={normal:"#8a8a6a",fire:"#e0662a",water:"#4a7fd6",grass:"#4caa3c",electric:"#d4a514",ice:"#4fb3b3",fighting:"#b02a22",poison:"#9a3aa0",ground:"#b89a45",flying:"#7d8fe0",psychic:"#e0407a",bug:"#8a9a18",rock:"#9a8630",ghost:"#66508a",dragon:"#5a2ee0",dark:"#5a4638",steel:"#7a7a92",fairy:"#d878a0"};
 const GR=[[1,151],[152,251],[252,386],[387,493],[494,649],[650,721],[722,809],[810,905],[906,1025]];
-const IV=[0,1,3,7,14,30,60],T=()=>Math.floor(Date.now()/864e5),$=id=>document.getElementById(id);
+const IV=[0,1,3,7,14,30,60],T=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5) /* jour LOCAL : tout change à minuit, heure du téléphone */,$=id=>document.getElementById(id);
 const im=i=>'<img alt="" src="'+SP[i-1]+'">';
 const tyB=t=>{const u=BD_T[EN()?"en":"fr"][t];return u?'<img class="tbd" alt="'+t+'" src="'+u+'">':'<span class="ty" style="background:'+CO[t]+'">'+FRT[t]+"</span>"};
 const ty=i=>'<div class="tys">'+TY[i-1].filter((t,k,a)=>a.indexOf(t)===k).map(tyB).join("")+"</div>";
@@ -948,6 +991,7 @@ function build(){
   snap();
   free=0;SS={ok:0,n:0};
   const A=act(),t=T();
+  if(F.day!==t){F=new Set();F.day=t} /* les cartes ratées ne bloquent leur progression que le jour même (avant : jusqu'au rechargement de l'appli) */
   if(S.cfg.vo)for(const i of A){const k="v"+i;if(S.x>=10)break;if(i<1025&&!S.c[k]&&S.c["a"+i]&&S.c["b"+i]&&S.c["a"+(i+1)]){S.c[k]={b:0,due:t};S.x++}}
   if(S.cfg.li)for(const f of FAM){const k="f"+f[0];if(S.x>=10)break;if(!S.c[k]&&f.every(m=>S.c["a"+m])){S.c[k]={b:0,due:t};S.x++}}
   q=Object.keys(S.c).filter(k=>S.c[k].due<=t).sort(()=>Math.random()-.5).slice(0,S.cfg.r?Math.max(0,S.cfg.r-S.rv):1e9);q=rvGroup(q);
@@ -999,7 +1043,7 @@ function next(){
     const v=inp.value.trim();if(!v||st)return;
     const good=s.ok(v),dt=Date.now()-t0;SS.tm=(SS.tm||0)+dt;
     if(good){const fast=!hinted&&!free&&dt<3500,near=s.ex&&!s.ex(v),cb1=(SS.cb||0)+1,kk=10-(S.g.ep||0),gx=free?"":hinted?(EN()?"hint used":"avec indice"):"+"+(3+Math.min(3,Math.floor(cb1/5))+(fast?1:0))+" 🪙"+(cb1>=3?" · 🔥 "+cb1:"")+(kk<=1?(EN()?" · ⚡ key!":" · ⚡ clé !"):"")+(fast?" · ⚡ "+(EN()?"lightning":"éclair"):"");
-      if(fast){earn(1);SS.fa=(SS.fa||0)+1}if(!hinted)SS.bc=Math.max(SS.bc||0,(SS.cb||0)+1);
+      if(fast){earn(1);SS.fa=(SS.fa||0)+1}if(!hinted){SS.bc=Math.max(SS.bc||0,(SS.cb||0)+1);dqa("bc",SS.bc,1)}
       window.__rvChip='<div class="res ok rvchip'+(near?" near":"")+'"><b>'+(near?(EN()?"Almost: ":"Presque : "):"✓ ")+esc(s.ans)+"</b>"+(gx?"<small>"+gx+"</small>":"")+"</div>";
       return fin(true)}
     st=1;inp.value="";inp.placeholder=EN()?"↵ next":"↵ suivant";$("hb").style.display="none";
@@ -1062,11 +1106,11 @@ async function exportFile(){
 const enc=()=>{S.ex=T();save();const p=btoa(unescape(encodeURIComponent(JSON.stringify(S))));return"PKM2:"+p+":"+hsh(p)};
 function dec(raw){
   raw=raw.replace(/\s/g,"");let p;
-  if(raw.startsWith("PKM2:")){const a=raw.slice(5).split(":");if(a.length!==2||hsh(a[0])!==a[1])throw"Code incomplet ou modifié : recopie-le en entier";p=a[0]}
-  else if(raw.startsWith("PKM1:"))p=raw.slice(5);else throw"Ce n'est pas un code de sauvegarde";
-  const o=JSON.parse(decodeURIComponent(escape(atob(p))));if(!o||typeof o.c!=="object")throw"Sauvegarde vide ou illisible";return o;
+  if(raw.startsWith("PKM2:")){const a=raw.slice(5).split(":");if(a.length!==2||hsh(a[0])!==a[1])throw L2("Code incomplet ou modifié : recopie-le en entier","Incomplete or modified code: copy it again in full");p=a[0]}
+  else if(raw.startsWith("PKM1:"))p=raw.slice(5);else throw L2("Ce n'est pas un code de sauvegarde","This isn't a save code");
+  const o=JSON.parse(decodeURIComponent(escape(atob(p))));if(!o||typeof o.c!=="object")throw L2("Sauvegarde vide ou illisible","Empty or unreadable save");return o;
 }
-const cnt=o=>Object.keys(o.c).length+" cartes, "+Object.keys(o.m||{}).length+" images perso";
+const cnt=o=>Object.keys(o.c).length+L2(" cartes, "," cards, ")+Object.keys(o.m||{}).length+L2(" images perso"," custom images")+(o.pb&&o.pb.t&&o.pb.t.length?L2(", Aventure : "+Object.keys(o.pb.cg||{}).length+" capturés",", Adventure: "+Object.keys(o.pb.cg||{}).length+" caught"):"");
 function backup(){try{localStorage.setItem("pk_prev",JSON.stringify(S))}catch(e){}}
 const state=i=>{const a=S.c["a"+i],b=S.c["b"+i];return!a?0:Math.min(a.b,b?b.b:0)>=4?2:1};
 function detail(i){
@@ -1224,7 +1268,9 @@ function dungeon(i){
     else if(win){gain=d.rw*(x2?2:1);g.dwt=(g.dwt||0)+1;dqa("dw",1);{const pz2=pbDungeonWin(d);if(pz2)ex=(ex?ex+" · ":"")+pz2}if(Math.random()<.5){const k=Object.keys(IT)[Math.floor(Math.random()*8)];g.inv[k]=(g.inv[k]||0)+1;ex=(ex?ex+" ":"")+"🎁 "+IT[k][0]}}
     else{gain=Math.round(d.rw/10);if(GD[i])ex="« L'Oubli reprend du terrain… reviens plus fort. »"}
     if(allies.length)ex+=" · Alliés : "+allies.map(n=>N[n-1]).join(", ");earn(gain);save();
-    $("card").innerHTML='<div class="big">'+(d.inf?"🗼":win?"🏆":"💀")+'</div><div class="res">'+(d.inf?"Fin de l'exploration":win?(d.gym!==undefined?(EN()?"Gym cleared!":"Arène remportée !"):d.lg?(EN()?"League conquered!":"Ligue conquise !"):"Donjon terminé !"):"Tu as perdu")+'</div><p class="sub">'+(gain?"+"+gain+" 🪙 ":"")+ex+'</p><button id="e1">Retour à la ville</button>';$("e1").onclick=()=>game("",2)};
+    mdEnd({icon:d.inf?"🗼":win?"🏆":"💀",ok:win,title:d.inf?L2("Fin de l'exploration","Exploration over"):win?(d.gym!==undefined?L2("Arène remportée !","Gym cleared!"):d.lg?L2("Ligue conquise !","League conquered!"):L2("Donjon terminé !","Dungeon cleared!")):L2("Tu as perdu","You lost"),
+      tiles:[["+"+gain,"🪙"],[d.inf?room:Math.min(room,d.rooms||room)+"/"+(d.rooms||"∞"),L2("salles","rooms")],[allies.length,L2("alliés","allies")]],lines:[ex.replace(/ · Alliés : .*$/,"")],
+      btn:[["e1",L2("Retour aux donjons","Back to dungeons"),()=>game("",2)],["e2",L2("Révisions","Reviews"),()=>{build();next()}]]})};
   const hit=()=>{if(sh>0){sh--;return false}lv--;if(lv<=0){end(false);return true}return false};
   const adv=()=>{qi++;if(qi>=qn()){room++;qi=0;called=false;aD=0;if(d.inf){earn(10+5*room);g.tw=Math.max(g.tw||0,room);dqa("tw",room,1);save()}else if((d.gym!==undefined&&room>=d.rooms)||d.lg){pz=1;pbDgFight(d,room,sh,w=>{if(!w)return end(false);if(room>=d.rooms)return end(true);pz=0;t=tt();ask()});return true}else if(room>=d.rooms){end(true);return true}t=tt()}return false};
   const use=(k,b)=>{if((g.inv[k]||0)<1)return;g.inv[k]--;save();
@@ -1290,7 +1336,7 @@ function statsView(){
   for(const k in S.c)if(k[0]==="a"){const i=+k.slice(1),g=GR.findIndex(r=>i>=r[0]&&i<=r[1]);gm[g][1]++;if(state(i)===2){m++;gm[g][0]++}}
   const bar=p=>'<div style="background:var(--bd);border-radius:6px;height:10px;margin:4px 0 10px"><div style="width:'+p+'%;background:var(--ok);height:10px;border-radius:6px"></div></div>';
   let tot=0,okk=0;const days=[];
-  for(let k=0;k<7;k++){const d=T()-k,x=S.hs[d]||[0,0];days.push('<div style="display:flex;justify-content:space-between;font-size:14px;margin:4px 0"><span>'+new Date(d*864e5).toLocaleDateString((LANG==="en"?"en-US":"fr-FR"),{weekday:"long"})+"</span><span>"+(x[1]?x[1]+" rép. · "+Math.round(100*x[0]/x[1])+"%":"—")+"</span></div>")}
+  for(let k=0;k<7;k++){const d=T()-k,x=S.hs[d]||[0,0];days.push('<div style="display:flex;justify-content:space-between;font-size:14px;margin:4px 0"><span>'+new Date(d*864e5).toLocaleDateString((LANG==="en"?"en-US":"fr-FR"),{timeZone:"UTC",weekday:"long"})+"</span><span>"+(x[1]?x[1]+" rép. · "+Math.round(100*x[0]/x[1])+"%":"—")+"</span></div>")}
   for(const d in S.hs){tot+=S.hs[d][1];okk+=S.hs[d][0]}
   const ms=[10,25,50,100,151,250,500,1025].map(x=>'<span class="ty" style="background:'+(m>=x?"var(--ok)":"var(--bd)")+";color:"+(m>=x?"#fff":"var(--mut)")+'">🏅 '+x+"</span>").join("");
   $("card").innerHTML='<div class="set"><h3 style="margin-top:0">Pokémon maîtrisés</h3><div class="big" style="font-size:34px;margin:4px 0 10px;text-align:center">'+m+" / 1025</div>"+GR.map((r,x)=>gm[x][1]?'<div style="font-size:14px">Gen '+(x+1)+" · "+gm[x][0]+" maîtrisés sur "+(r[1]-r[0]+1)+bar(100*gm[x][0]/(r[1]-r[0]+1))+"</div>":"").join("")+'<h3>Paliers</h3><div style="display:flex;flex-wrap:wrap;gap:6px">'+ms+'</div><h3>7 derniers jours</h3>'+days.join("")+'<h3>Réussite globale</h3><div class="sub">'+(tot?tot+" réponses · "+Math.round(100*okk/tot)+"% de réussite":"Pas encore de données")+" · Record de série : "+S.st.best+(LANG==="en"?" d":" j")+'</div><button id="spb">⚡ Sprint 60 s (record : '+(S.spb||0)+')</button><button class="sec" id="bs">Retour aux révisions</button></div>';
@@ -1314,20 +1360,20 @@ function settings(){
   c.querySelectorAll("select,input[type=checkbox],.pg").forEach(x=>x.onchange=upd);$("cla").onchange=()=>{setLang($("cla").value);settings()};
   const info=()=>{const d=S.ex?T()-S.ex:null;$("inf").textContent="Actuellement : "+cnt(S)+". Dernier export : "+(d===null?"jamais":d===0?"aujourd'hui":(LANG==="en"?d+" d ago":"il y a "+d+" j"))+".";let has=false;try{has=!!localStorage.getItem("pk_prev")}catch(e){}$("un").style.display=has?"block":"none"};
   info();
-  $("ex").onclick=async()=>{const code=enc(),t=$("bk");t.value=code;t.select();let ok=false;try{await navigator.clipboard.writeText(code);ok=true}catch(e){try{ok=document.execCommand("copy")}catch(e2){}}$("msg").textContent=ok?"Code copié ✓ Colle-le dans tes notes":"Copie le code du cadre ci-dessus";info()};
+  $("ex").onclick=async()=>{const code=enc(),t=$("bk");t.value=code;t.select();let ok=false;try{await navigator.clipboard.writeText(code);ok=true}catch(e){try{ok=document.execCommand("copy")}catch(e2){}}$("msg").textContent=ok?L2("Code copié ✓ Colle-le dans tes notes","Code copied ✓ Paste it in your notes"):L2("Copie le code du cadre ci-dessus","Copy the code from the box above");info()};
   const imp=merge=>{
     try{
       const o=dec($("bk").value);
-      if(!confirm((merge?"Fusionner avec":"Remplacer ta progression par")+" ce code ("+cnt(o)+") ?"))return;
+      if(!confirm(merge?L2("Fusionner avec ce code ("+cnt(o)+") ?","Merge with this code ("+cnt(o)+")?"):L2("Remplacer ta progression par ce code ("+cnt(o)+") ?","Replace your progress with this code ("+cnt(o)+")?")))return;
       backup();
       if(merge){
         for(const k in o.c){const x=S.c[k],y=o.c[k];if(!x||y.b>x.b||(y.b===x.b&&y.due>x.due))S.c[k]=y}
         for(const i in o.m||{})if(!S.m[i])S.m[i]=o.m[i];
-        const s2=o.st||{l:0,n:0};if(s2.l>S.st.l||(s2.l===S.st.l&&s2.n>S.st.n))S.st=s2;S.st.best=Math.max(S.st.best||0,s2.best||0,S.st.n);for(const k in o.hs||{}){const a=S.hs[k],b=o.hs[k];if(!a||b[1]>a[1])S.hs[k]=b}S.spb=Math.max(S.spb||0,o.spb||0);if(o.g&&o.g.co>S.g.co)S.g=Object.assign(S.g,o.g);
+        const s2=o.st||{l:0,n:0};if(s2.l>S.st.l||(s2.l===S.st.l&&s2.n>S.st.n))S.st=s2;S.st.best=Math.max(S.st.best||0,s2.best||0,S.st.n);for(const k in o.hs||{}){const a=S.hs[k],b=o.hs[k];if(!a||b[1]>a[1])S.hs[k]=b}S.spb=Math.max(S.spb||0,o.spb||0);if(o.g&&o.g.co>S.g.co)S.g=Object.assign(S.g,o.g);{const sc=p=>p&&p.t?Object.keys(p.cg||{}).length*10+(p.bd||[]).length*100+(p.lg||0)*1000+p.t.reduce((a,m)=>a+m.l,0):-1;if(sc(o.pb)>sc(S.pb))S.pb=o.pb}if(o.d0&&(!S.d0||o.d0<S.d0))S.d0=o.d0;
         S.cfg.g=[...new Set([...S.cfg.g,...((o.cfg||{}).g||[])])];
       }else init(o);
-      F=new Set();save();settings();$("msg").textContent="Import réussi ✓ ("+cnt(S)+")";
-    }catch(e){$("msg").textContent=typeof e==="string"?e:"Code invalide, vérifie qu'il est complet"}
+      F=new Set();save();settings();$("msg").textContent=L2("Import réussi ✓ (","Import done ✓ (")+cnt(S)+")";
+    }catch(e){$("msg").textContent=typeof e==="string"?e:L2("Code invalide, vérifie qu'il est complet","Invalid code, check that it's complete")}
   };
   $("im2").onclick=()=>imp(0);$("mg").onclick=()=>imp(1);
   $("exf").onclick=async()=>{const ok=await exportFile();if(ok){info();$("msg").textContent=EN()?"File ready ✓":"Fichier prêt ✓"}};
@@ -1335,9 +1381,9 @@ function settings(){
   $("imf").onchange=()=>{const f=$("imf").files&&$("imf").files[0];if(!f)return;const r=new FileReader();
     r.onload=()=>{$("bk").value=String(r.result||"").trim();$("msg").textContent=EN()?"File loaded ✓ Now choose Import or Merge":"Fichier chargé ✓ Choisis maintenant Importer ou Fusionner";$("imf").value=""};
     r.onerror=()=>{$("msg").textContent=EN()?"Could not read this file":"Impossible de lire ce fichier"};r.readAsText(f)};
-  $("un").onclick=()=>{try{const o=JSON.parse(localStorage.getItem("pk_prev"));if(!confirm("Revenir à l'état d'avant le dernier import ou la dernière réinitialisation ?"))return;localStorage.removeItem("pk_prev");init(o);F=new Set();save();settings();$("msg").textContent="État restauré ✓"}catch(e){$("msg").textContent="Rien à restaurer"}};
-  $("rs").onclick=()=>{if(confirm("Effacer toute ta progression ? (tu pourras annuler juste après)")){backup();init({});F=new Set();save();settings();$("msg").textContent="Réinitialisé (tu peux restaurer)"}};
-  c.querySelectorAll(".snp").forEach(b=>b.onclick=()=>{if(!confirm("Restaurer cette sauvegarde ?"))return;backup();init(JSON.parse(snaps[+b.dataset.i].s));F=new Set();save();settings();$("msg").textContent="Sauvegarde restaurée ✓"});
+  $("un").onclick=()=>{try{const o=JSON.parse(localStorage.getItem("pk_prev"));if(!confirm(L2("Revenir à l'état d'avant le dernier import ou la dernière réinitialisation ?","Go back to the state before the last import or reset?")))return;localStorage.removeItem("pk_prev");init(o);F=new Set();save();settings();$("msg").textContent=L2("État restauré ✓","State restored ✓")}catch(e){$("msg").textContent=L2("Rien à restaurer","Nothing to restore")}};
+  $("rs").onclick=()=>{if(confirm(L2("Effacer toute ta progression ? (tu pourras annuler juste après)","Erase all your progress? (you can undo right after)"))){backup();init({});F=new Set();save();settings();$("msg").textContent=L2("Réinitialisé (tu peux restaurer)","Reset done (you can restore)")}};
+  c.querySelectorAll(".snp").forEach(b=>b.onclick=()=>{if(!confirm(L2("Restaurer cette sauvegarde ?","Restore this backup?")))return;backup();init(JSON.parse(snaps[+b.dataset.i].s));F=new Set();save();settings();$("msg").textContent=L2("Sauvegarde restaurée ✓","Backup restored ✓")});
   $("bk2").onclick=()=>{upd();build();next()};
 }
 const nav=f=>()=>{if(window.pkStop){try{window.pkStop()}catch(e){}window.pkStop=null}f()};$("gv").onclick=nav(()=>{build();next()});$("gr").onclick=nav(settings);$("gd").onclick=nav(browse);$("gs").onclick=nav(statsView);$("gm").onclick=nav(()=>game("",0));try{navigator.storage.persist()}catch(e){}
@@ -1687,9 +1733,11 @@ function safari(){
   let n=0,ok=0,locked=false;const tot=10,D0=!!window.__duel,rvs=D0?duelScore():0,bhp=rvs+1,mhp=Math.max(1,tot-rvs),
     upd=(el,cur,max)=>{if(!el)return;el.querySelector("i").style.width=Math.max(0,cur/max*100)+"%";el.querySelector("em").textContent=Math.max(0,cur)+"/"+max};
   const ask=()=>{
-    if(n>=tot){const D=window.__duel,rv=D?rvs:0,w=D&&ok>rv,g=ok*6*(w?2:1);earn(g);dqa("sf",ok);if(w){S.dw=(S.dw||0)+1;S.xp=(S.xp||0)+30}window.__duel=0;save();c.innerHTML=(D?'<div class="sub">Blue : '+rv+" / "+tot+"</div>":"")+(w?'<div class="sub">'+blueLine()+"</div>":"")+'<div class="big">'+(D?(w?"🏆":"😤"):"🌿")+'</div><div class="res">'+ok+" / "+tot+(EN()?" caught":" capturés")+'</div><p class="sub">+'+g+' 🪙</p><button id="sfa">'+(EN()?"Again":"Rejouer")+'</button><button class="sec" id="sfx">'+(EN()?"Back":"Retour")+"</button>";$("sfa").onclick=safari;$("sfx").onclick=back;return}
+    if(n>=tot){const D=window.__duel,rv=D?rvs:0,w=D&&ok>rv,g=ok*6*(w?2:1);earn(g);dqa("sf",ok);if(w){S.dw=(S.dw||0)+1;dqa("du",1);S.xp=(S.xp||0)+30}window.__duel=0;save();mdEnd({icon:D?(w?"🏆":"😤"):(ok>=8?"🏆":"🌿"),ok:D?w:ok>=8,title:D?(w?L2("Tu as battu Blue !","You beat Blue!"):L2("Blue l'emporte…","Blue wins…")):ok+" / "+tot+L2(" capturés"," caught"),
+    tiles:D?[[ok+"/"+tot,L2("toi","you")],[rv+"/"+tot,"Blue"],["+"+g,"🪙"]]:[[ok+"/"+tot,L2("capturés","caught")],["+"+g,"🪙"]],lines:[w?blueLine():""],
+    btn:[["sfa",(D?"🥊 ":"🌿 ")+L2("Rejouer","Play again"),D?duel:safari],["sfx",L2("Retour","Back"),back]]});return}
     const i=ks[Math.floor(Math.random()*ks.length)];locked=false;const sh=Math.random()<.125;
-    c.innerHTML='<div class="tag">'+(window.__duel?"🥊 Blue":(sh?(EN()?"✨ Shiny":"✨ Chromatique"):"🌿 Safari"))+" · "+(n+1)+"/"+tot+'</div>'+(D0?hpb(mhp-(n-ok),mhp,0,EN()?"You":"Toi",1)+hpb(bhp-ok,bhp,0,"🥊 Blue"):hpb(ok,tot,0,EN()?"Caught":"Capturés",1)+hpb(100,100,0,sh?"✨ ???":"???"))+'<div class="sil'+(sh?" shiny":"")+'"><img alt="" src="'+SP[i-1]+'"></div>'+ty(i)+'<div class="sub">'+(EN()?"The Fog erased its name…":"Le Brouillard a effacé son nom…")+'</div><input type="text" id="in" autocomplete="off" placeholder="'+(EN()?"Name":"Nom")+'"><button id="ok2">'+(EN()?"Catch":"Capturer")+'</button><div id="out"></div>';
+    c.innerHTML='<div class="tag">'+(window.__duel?"🥊 Blue":(sh?(EN()?"✨ Shiny":"✨ Chromatique"):"🌿 Safari"))+" · "+(n+1)+"/"+tot+'</div>'+(D0?'<div class="dubl"><div class="dupt" style="background-image:url('+BD_TR.o.blue+')"></div><p>'+esc(blueLine())+"</p></div>"+hpb(mhp-(n-ok),mhp,0,EN()?"You":"Toi",1)+hpb(bhp-ok,bhp,0,"🥊 Blue"):hpb(ok,tot,0,EN()?"Caught":"Capturés",1)+hpb(100,100,0,sh?"✨ ???":"???"))+'<div class="sil'+(sh?" shiny":"")+'"><img alt="" src="'+SP[i-1]+'"></div>'+ty(i)+'<div class="sub">'+(EN()?"The Fog erased its name…":"Le Brouillard a effacé son nom…")+'</div><div class="rvr"><input type="text" id="in" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" data-nm="'+esc(N[i-1])+'" placeholder="'+(EN()?"Name":"Nom")+'"><button id="ok2">'+(D0?"🥊":"🔴")+'</button></div><div id="out"></div>';
     const go=()=>{const v=$("in").value.trim();if(!v||locked)return;locked=true;n++;const good=nm(v,N[i-1]);if(good){ok++;if(sh){earn(15);window.pkRain&&pkRain()}}c.querySelector(".sil").classList.add("rv");{const hs=c.querySelectorAll(".hp");if(D0){upd(hs[0],mhp-(n-ok),mhp);upd(hs[1],bhp-ok,bhp)}else{upd(hs[0],ok,tot);if(good)upd(hs[1],0,100)}}
       $("out").innerHTML='<div class="res '+(good?"ok":"ko")+'">'+(good?(EN()?"Caught! ":"Capturé ! "):(EN()?"It fled… it was ":"Il s'enfuit… c'était "))+esc(N[i-1])+"</div>"+(good&&!D0?pbSafari(i):"");if(D0&&(ok>=bhp||n-ok>=mhp))n=tot;setTimeout(ask,good?900:1600)};
     $("ok2").onclick=go;$("in").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();go()}};$("in").focus({preventScroll:true});
@@ -1810,7 +1858,7 @@ function shareP(){
 }
 function intro(){
   const o=document.createElement("div");o.className="chest";
-  o.innerHTML="<div>"+art("c1")+'<h3 style="margin:6px 0 4px">Pokédex Mémoire</h3><p class="sub" style="text-align:left">'+(EN()?"The Fog has erased every Pokémon's name. Chen hands you the Pokédex: each number you remember relights its flame.<br><br>① Learn a few Pokémon<br>② Come back every day: memory is a muscle<br>③ Earn XP, coins, duels and story chapters":"Le Brouillard a effacé le nom de chaque Pokémon. Chen te confie le Pokédex : chaque numéro retenu rallume sa flamme.<br><br>① Apprends quelques Pokémon<br>② Reviens chaque jour : la mémoire est un muscle<br>③ Gagne XP, pièces, duels et chapitres")+'</p><button id="in0">'+(EN()?"Begin":"Commencer")+"</button></div>";
+  o.innerHTML="<div>"+art("s1")+'<h3 style="margin:6px 0 4px">Pokédex Mémoire</h3><p class="sub" style="text-align:left">'+(EN()?"The Fog has erased every Pokémon's name. Chen hands you the Pokédex: each number you remember relights its flame.<br><br>① Learn a few Pokémon (each one unlocks more of the game)<br>② Come back every day: memory is a muscle<br>③ Then the Adventure: battles, catches, badges and the story of the Archivist":"Le Brouillard a effacé le nom de chaque Pokémon. Chen te confie le Pokédex : chaque numéro retenu rallume sa flamme.<br><br>① Apprends quelques Pokémon (chacun débloque une partie du jeu)<br>② Reviens chaque jour : la mémoire est un muscle<br>③ Puis l'Aventure : combats, captures, badges et l'histoire de l'Archiviste")+'</p><button id="in0">'+(EN()?"Begin":"Commencer")+"</button></div>";
   document.body.appendChild(o);$("in0").onclick=()=>{o.remove();chest()};
 }
 /* ===== Barres de vie + guide de l'histoire ===== */
@@ -1929,8 +1977,9 @@ const pbBar=(p,col)=>'<div class="pbmh"><i style="width:'+Math.round(Math.max(0,
 
 /* ---------- Combat ---------- */
 function pbBattle(cfg){
-  const c=$("card"),tok=window.__cb={},live=()=>window.__cb===tok,P=pbS(),team=P.t,wild=cfg.k==="w";
+  const c=$("card"),tok=window.__cb={},live=()=>window.__cb===tok&&(!pbRoot||pbRoot.isConnected),P=pbS(),team=P.t,wild=cfg.k==="w";let pbRoot=null;
   const chk=()=>{if(!live())throw PBX};
+  const pbAnC=async(...a)=>{chk();await pbAn(...a);chk()}; /* animation sûre : si on quitte l'écran pendant, le combat s'arrête proprement */
   const W=async ms=>{await new Promise(r=>setTimeout(r,ms));chk()};
   let pi=team.findIndex(m=>m.h>0);if(pi<0)return adv();
   const foes=wild?[cfg.mon]:cfg.tr.team.map(x=>pbNew(x[0],x[1],0)),TRN=wild?"":cfg.tr.n[EN()?1:0];
@@ -1953,26 +2002,26 @@ function pbBattle(cfg){
     e.onload=u?()=>{const f=$("pbf");if(!f)return;const k=f.clientHeight/458;e.style.height=Math.round(e.naturalHeight*k)+"px";e.style.width=Math.round(e.naturalWidth*k)+"px"}:null;if(!u){e.style.height="";e.style.width=""}
     e.src=u||SP[m.i-1];e.classList.toggle("hdsp",!!u);e.classList.toggle("hdb",!!u&&!s);e.classList.toggle("pbshy",!!m.sh&&!u)};
   const terr=cfg.leg?"leg":!wild?"gym":cfg.zone?({h:"grass",c:"cave",w:"water",f:"water",b:"forest"}[cfg.zone.g]||"grass"):"grass";
-  const draw=()=>{c.innerHTML='<div class="pbw'+(wild?"":" pbt")+(cfg.leg?" pbl":"")+'" data-notr="1"><div class="pbf" id="pbf" data-t="'+terr+'" data-se="'+(typeof dySeason==="function"&&terr!=="gym"&&terr!=="cave"?dySeason():"")+'"><div class="pbbg">'+pbScene(terr,typeof zTime==="function"?zTime():1)+'</div><div class="pbpl pbplE"></div><div class="pbpl pbplP"></div><img class="pbs pbsE" id="pbsE" alt=""><img class="pbs pbsP" id="pbsP" alt=""><div class="pbtr pbtrE" id="pbtE"></div><div class="pbtr pbtrP" id="pbtP"></div><div class="pbbox pbbE" id="pbE"></div><div class="pbbox pbbP" id="pbP"></div><button class="pbspd" id="pbspd" type="button">⏩ ×'+(P.spd||1)+'</button></div><div class="pbm" id="pbm" aria-live="polite"></div><div class="pba" id="pba"></div></div>';
+  const draw=()=>{c.innerHTML='<div class="pbw'+(wild?"":" pbt")+(cfg.leg?" pbl":"")+'" data-notr="1"><div class="pbf" id="pbf" data-t="'+terr+'" data-se="'+(typeof dySeason==="function"&&terr!=="gym"&&terr!=="cave"?dySeason():"")+'"><div class="pbbg">'+pbScene(terr,typeof zTime==="function"?zTime():1)+'</div><div class="pbpl pbplE"></div><div class="pbpl pbplP"></div><img class="pbs pbsE" id="pbsE" alt=""><img class="pbs pbsP" id="pbsP" alt=""><div class="pbtr pbtrE" id="pbtE"></div><div class="pbtr pbtrP" id="pbtP"></div><div class="pbbox pbbE" id="pbE"></div><div class="pbbox pbbP" id="pbP"></div><button class="pbspd" id="pbspd" type="button">⏩ ×'+(P.spd||1)+'</button></div><div class="pbm" id="pbm" aria-live="polite"></div><div class="pba" id="pba"></div></div>';pbRoot=c.querySelector(".pbw");
     $("pbf").onclick=$("pbm").onclick=()=>{fast=1};$("pbspd").onclick=e=>{e.stopPropagation();P.spd=(P.spd||1)>=3?1:(P.spd||1)+1;save();e.currentTarget.textContent="⏩ ×"+P.spd}};
   const pop=(s,t,col)=>{const e=spr(s);if(!e)return;const r=e.getBoundingClientRect(),p=document.createElement("div");p.className="pp big";p.textContent=t;p.style.cssText+=";left:"+(r.left+r.width/2)+"px;top:"+(r.top+10)+"px;color:"+(col||"#ff6b5b");document.body.appendChild(p);setTimeout(()=>p.remove(),1100)};
-  const appear=async s=>{await hdPrep(mon(s),!!s);chk();const e=spr(s);setSpr(s);e.style.opacity=1;window.pkSfx&&pkSfx("nav");await pbAn(e,[{transform:base(s)+"scale(.1)",filter:"brightness(6)"},{transform:base(s)+"scale(1)",filter:"brightness(1)"}],{duration:420,easing:"ease-out"});box(s);
+  const appear=async s=>{await hdPrep(mon(s),!!s);chk();const e=spr(s);setSpr(s);e.style.opacity=1;window.pkSfx&&pkSfx("nav");await pbAnC(e,[{transform:base(s)+"scale(.1)",filter:"brightness(6)"},{transform:base(s)+"scale(1)",filter:"brightness(1)"}],{duration:420,easing:"ease-out"});box(s);
     if(mon(s).sh){sfxPlay("shiny");const r=e.getBoundingClientRect();window.pkBurst&&pkBurst(r.left+r.width/2,r.top+r.height/2,24,1);await say(L2("✨ Il brille ! C'est un Pokémon chromatique !","✨ It's shining! A shiny Pokémon!"))}};
   const sendE=async()=>{await say(L2(TRN+" envoie "+N[mon(1).i-1]+" !",TRN+" sent out "+N[mon(1).i-1]+"!"),300);await appear(1)};
   const sendP=async()=>{await say(L2("En avant, "+N[mon(0).i-1]+" !","Go! "+N[mon(0).i-1]+"!"),250);await appear(0)};
   const stripTo=(t,url,n)=>{t.style.backgroundImage="url("+url+")";t.style.backgroundSize=n*100+"% 100%";t.style.backgroundPosition="0 0";t.style.opacity=1};
   const intro=async()=>{draw();ui("");await Promise.all([hdPrep(mon(1),1),hdPrep(mon(0),0)]);chk();box(0);$("pbP").style.visibility="hidden";$("pbE").style.visibility="hidden";
     const tP=$("pbtP");stripTo(tP,BD_TR.p[Math.max(0,P.av)],5);
-    await pbAn(tP,[{transform:"translateX(-120%)"},{transform:"none"}],{duration:450,easing:"ease-out"});
-    if(wild){const e=spr(1);setSpr(1);e.style.opacity=1;await pbAn(e,[{transform:"translateX(-240px)",filter:"brightness(0)"},{transform:"none",filter:"brightness(0)",offset:.8},{transform:"none",filter:"brightness(1)"}],{duration:750,easing:"ease-out"});
+    await pbAnC(tP,[{transform:"translateX(-120%)"},{transform:"none"}],{duration:450,easing:"ease-out"});
+    if(wild){const e=spr(1);setSpr(1);e.style.opacity=1;await pbAnC(e,[{transform:"translateX(-240px)",filter:"brightness(0)"},{transform:"none",filter:"brightness(0)",offset:.8},{transform:"none",filter:"brightness(1)"}],{duration:750,easing:"ease-out"});
       $("pbE").style.visibility="";box(1);window.pkSfx&&pkSfx("ko");if(cfg.leg){e.classList.add("pblg");window.uxSnd&&uxSnd("medal");await say(L2("Le sol tremble… "+N[mon(1).i-1]+", Pokémon légendaire, apparaît !","The ground shakes… "+N[mon(1).i-1]+", a Legendary Pokémon, appears!"),900)}
       await say(known(mon(1))?L2("Un "+N[mon(1).i-1]+" sauvage apparaît !","A wild "+N[mon(1).i-1]+" appeared!"):L2("Un Pokémon sauvage apparaît ! Qui est-ce ?","A wild Pokémon appeared! Who is it?"));
       if(mon(1).sh){sfxPlay("shiny");const r=e.getBoundingClientRect();window.pkBurst&&pkBurst(r.left+r.width/2,r.top+r.height/2,24,1);await say(L2("✨ Il brille ! C'est un Pokémon chromatique !","✨ It's shining! A shiny Pokémon!"))}}
-    else{const t=$("pbtE");stripTo(t,BD_TR.o[cfg.tr.sp]||BD_TR.o.ace,2);await pbAn(t,[{transform:"translateX(220px)"},{transform:"none"}],{duration:550,easing:"ease-out"});
+    else{const t=$("pbtE");stripTo(t,BD_TR.o[cfg.tr.sp]||BD_TR.o.ace,2);await pbAnC(t,[{transform:"translateX(220px)"},{transform:"none"}],{duration:550,easing:"ease-out"});
       await say(cfg.tr.line||L2(TRN+" veut se battre !",TRN+" would like to battle!"));t.style.backgroundPosition="100% 0";await W(200);
-      await pbAn(t,[{transform:"none",opacity:1},{transform:"translateX(160px)",opacity:0}],{duration:380});t.style.opacity=0;$("pbE").style.visibility="";await sendE()}
+      await pbAnC(t,[{transform:"none",opacity:1},{transform:"translateX(160px)",opacity:0}],{duration:380});t.style.opacity=0;$("pbE").style.visibility="";await sendE()}
     for(let f=1;f<5;f++){tP.style.backgroundPosition=f*25+"% 0";await W(80)}
-    await pbAn(tP,[{transform:"none",opacity:1},{transform:"translateX(-130%)",opacity:0}],{duration:320});tP.style.opacity=0;
+    await pbAnC(tP,[{transform:"none",opacity:1},{transform:"translateX(-130%)",opacity:0}],{duration:320});tP.style.opacity=0;
     $("pbP").style.visibility="";await sendP()};
   /* --- calculs --- */
   const sm=n=>n>=0?(2+n)/2:2/(2-n);
@@ -1991,11 +2040,11 @@ function pbBattle(cfg){
   const lunge=s=>pbAn(spr(s),[{transform:base(s)},{transform:base(s)+"translate("+(s?-20:20)+"px,"+(s?10:-10)+"px)"},{transform:base(s)}],{duration:fast?80:260});
   const shot=async(s,mv)=>{const f=$("pbf"),a=spr(s),d=spr(1-s);if(!f||!a||!d)return;const o=document.createElement("i");o.className="pbo";o.style.background=o.style.color=CO[mv[1]]||"#fff";f.appendChild(o);
     const fr=f.getBoundingClientRect(),ra=a.getBoundingClientRect(),rd=d.getBoundingClientRect(),x0=ra.left-fr.left+ra.width/2,y0=ra.top-fr.top+ra.height/2,x1=rd.left-fr.left+rd.width/2,y1=rd.top-fr.top+rd.height/2;
-    await pbAn(o,[{transform:"translate("+x0+"px,"+y0+"px) scale(.5)"},{transform:"translate("+x1+"px,"+y1+"px) scale(1.8)",opacity:.85}],{duration:fast?90:330,easing:"ease-in"});o.remove()};
+    await pbAnC(o,[{transform:"translate("+x0+"px,"+y0+"px) scale(.5)"},{transform:"translate("+x1+"px,"+y1+"px) scale(1.8)",opacity:.85}],{duration:fast?90:330,easing:"ease-in"});o.remove()};
   const glow=(s,col,up)=>pbAn(spr(s),[{filter:"none"},{filter:"drop-shadow(0 0 10px "+col+") brightness(1.4)",transform:base(s)+"translateY("+(up?-6:6)+"px)"},{filter:"none",transform:base(s)}],{duration:fast?120:450});
   const hurt=async(s,dm,e)=>{const m=mon(s);m.h=Math.max(0,m.h-dm);pop(s,"-"+dm);if(!sfxPlay(e>1?"hitS":e<1?"hitW":"hit"))window.pkSfx&&pkSfx(e>1?"ok":"tap");
     if(e>1){const r=spr(s).getBoundingClientRect();window.pkBurst&&pkBurst(r.left+r.width/2,r.top+r.height/2,18)}
-    box(s);await pbAn(spr(s),[{opacity:1},{opacity:.15},{opacity:1},{opacity:.15},{opacity:1}],{duration:fast?100:420})};
+    box(s);await pbAnC(spr(s),[{opacity:1},{opacity:.15},{opacity:1},{opacity:.15},{opacity:1}],{duration:fast?100:420})};
   const heal=async(s,n)=>{const m=mon(s),mx=pbSt(m)[0],v=Math.min(n,mx-m.h);if(v<=0)return 0;m.h+=v;pop(s,"+"+v,"#3fcf6a");box(s);await glow(s,"#7dffa0",1);return v};
   /* --- statuts et stats --- */
   const MS={par:[" est paralysé ! Il aura du mal à attaquer."," is paralyzed! It may be unable to move!"],brn:[" est brûlé !"," was burned!"],psn:[" est empoisonné !"," was poisoned!"],
@@ -2100,7 +2149,7 @@ function pbBattle(cfg){
     ui('<div class="pbq"><div class="pbql">'+lbl+"</div>"+(kind==="cap"?"":'<div class="pbqb">'+(isA?"#"+id:'<img class="pbqi" alt="" src="'+SP[id-1]+'">')+"</div>")+'<div class="pbqr"><input type="text" id="in" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" '+(num?'inputmode="numeric" data-len="'+String(id).length+'" ':'data-nm="'+esc(N[id-1])+'" ')+'placeholder="'+(num?L2("Numéro","Number"):L2("Nom","Name"))+'"><button id="ok2">'+(kind==="cap"?"🔴":"⚔️")+'</button></div><div id="out"></div></div>');
     const inp=$("in");inp.focus({preventScroll:true});let done=0;const t0=Date.now();
     const go=async()=>{const v=inp.value.trim();if(!v||done)return;done=1;inp.disabled=true;const good=num?v.replace(/\D/g,"")==id:nm(v,N[id-1]);
-      if(kind==="atk"){stk=good?stk+1:0;qk=good&&Date.now()-t0<4500?1:0;box(0)}
+      if(kind==="atk"){if(good)dqa("bq",1);stk=good?stk+1:0;qk=good&&Date.now()-t0<4500?1:0;box(0)}
       $("out").innerHTML='<div class="res '+(good?"ok":"ko")+'">'+(good?"✓ ":"✗ ")+"#"+id+" "+esc(N[id-1])+"</div>"+(kind==="atk"&&good?'<div class="pbqk">'+(qk?L2("⚡ Réflexe : coup critique plus probable","⚡ Quick recall: higher critical chance"):"")+(stk>=2?(qk?" · ":"")+L2("🔥 Série ×","🔥 Streak ×")+stk+" : +"+Math.min(stk-1,5)*10+L2(" % de dégâts"," % damage"):"")+"</div>":"");
       await new Promise(r=>setTimeout(r,good?650:1500));if(live())res(good)};
     $("ok2").onclick=go;inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();go()}}});
@@ -2130,14 +2179,14 @@ function pbBattle(cfg){
     $("pba").onclick=e=>{const b=e.target.closest("[data-j]");if(b)res(+b.dataset.j)}});
   const throwBall=async(shakes,caught)=>{const f=$("pbf"),e=spr(1);if(!f||!e)return;const b=document.createElement("i");b.className="pbball";f.appendChild(b);
     const fr=f.getBoundingClientRect(),re=e.getBoundingClientRect(),x1=re.left-fr.left+re.width/2-10,y1=re.top-fr.top+re.height*.55,T1="translate("+x1+"px,"+y1+"px)";
-    await pbAn(b,[{transform:"translate(10px,"+(fr.height-30)+"px) rotate(0)"},{transform:"translate("+x1*.6+"px,"+(y1*.2-30)+"px) rotate(400deg)"},{transform:T1+" rotate(720deg)"}],{duration:650,easing:"ease-out"});
-    b.style.transform=T1;await pbAn(e,[{transform:"scale(1)",filter:"brightness(1)"},{transform:"scale(.05)",filter:"brightness(5)"}],{duration:350});e.style.opacity=0;
-    for(let k=0;k<shakes;k++){await W(320);window.pkSfx&&pkSfx("tap");await pbAn(b,[{transform:T1+" rotate(0)"},{transform:T1+" rotate(-28deg)"},{transform:T1+" rotate(28deg)"},{transform:T1+" rotate(0)"}],{duration:420})}
+    await pbAnC(b,[{transform:"translate(10px,"+(fr.height-30)+"px) rotate(0)"},{transform:"translate("+x1*.6+"px,"+(y1*.2-30)+"px) rotate(400deg)"},{transform:T1+" rotate(720deg)"}],{duration:650,easing:"ease-out"});
+    b.style.transform=T1;await pbAnC(e,[{transform:"scale(1)",filter:"brightness(1)"},{transform:"scale(.05)",filter:"brightness(5)"}],{duration:350});e.style.opacity=0;
+    for(let k=0;k<shakes;k++){await W(320);window.pkSfx&&pkSfx("tap");await pbAnC(b,[{transform:T1+" rotate(0)"},{transform:T1+" rotate(-28deg)"},{transform:T1+" rotate(28deg)"},{transform:T1+" rotate(0)"}],{duration:420})}
     if(caught){await W(300);b.style.filter="brightness(.55)";const r=b.getBoundingClientRect();window.pkBurst&&pkBurst(r.left+10,r.top+10,30,1);window.pkSfx&&pkSfx("win")}
-    else{await W(250);b.remove();e.style.opacity=1;await pbAn(e,[{transform:"scale(.05)",filter:"brightness(5)"},{transform:"scale(1)",filter:"brightness(1)"}],{duration:300})}};
+    else{await W(250);b.remove();e.style.opacity=1;await pbAnC(e,[{transform:"scale(.05)",filter:"brightness(5)"},{transform:"scale(1)",filter:"brightness(1)"}],{duration:300})}};
   const doAct=async a=>{
     if(a.k==="run"){SD[0].ra=(SD[0].ra||0)+1;const ps=spe(0),es=spe(1);if(ps>=es||Math.random()*256<ps*128/es+30*SD[0].ra){await say(L2("Vous prenez la fuite !","Got away safely!"));return "run"}await say(L2("Impossible de fuir !","Can't escape!"));return null}
-    if(a.k==="sw"){await say(L2(N[mon(0).i-1]+", reviens !",N[mon(0).i-1]+", come back!"),300);const e=spr(0);await pbAn(e,[{transform:base(0)+"scale(1)",opacity:1},{transform:base(0)+"scale(.1)",opacity:0}],{duration:300});e.style.opacity=0;pi=a.i;SD[0]=vol();await sendP();return null}
+    if(a.k==="sw"){await say(L2(N[mon(0).i-1]+", reviens !",N[mon(0).i-1]+", come back!"),300);const e=spr(0);await pbAnC(e,[{transform:base(0)+"scale(1)",opacity:1},{transform:base(0)+"scale(.1)",opacity:0}],{duration:300});e.style.opacity=0;pi=a.i;SD[0]=vol();await sendP();return null}
     if(a.k==="ball"){P.bag[a.it]--;const m=mon(1);await say(L2("Tu lances une "+pbIN(a.it)+" !","You threw a "+pbIN(a.it)+"!"),250);
       if(!a.ok){m.rev=1;box(1);await throwBall(0,0);await say(L2("Raté ! Sans son nom, la Ball ne l'attrape pas. C'était "+N[m.i-1]+" !","Missed! Without its name, the Ball can't hold it. It was "+N[m.i-1]+"!"),900);return null}
       const mx=pbSt(m)[0],rate=Math.max((BD_X[m.i-1]||[45])[0],cfg.leg?15:0),sb=m.s==="slp"||m.s==="frz"?2:m.s?1.5:1,x=Math.min(255,(3*mx-2*m.h)*rate*PB_IT[a.it][3]*sb*1.25*(1+pbPerk("ca"))/(3*mx)),p=Math.pow(x/255,.25);
@@ -2165,9 +2214,9 @@ function pbBattle(cfg){
     const em=act.em!==undefined?act.em:ai();
     for(const s of order){if(mon(0).h<=0||mon(1).h<=0)break;await useMove(s,s?{mv:em,ok:1}:act);const r=await faints();if(r==="win"||r==="lose")return r;if(r)return null}
     await resid();const r=await faints();return r==="win"||r==="lose"?r:null};
-  const finish=async r=>{let co=0;const ok=r==="win";if(cfg.zone)zChain(cfg,r,foes[0].i);if(cfg.leg){P.lgd=P.lgd||{};if(P.lgd[foes[0].i]===T()){P.lg2=P.lg2||{};P.lg2[foes[0].i]=T()}P.lgd[foes[0].i]=T()}if(ok)dqa("bw",1);if(r==="caught")dqa("cp",1);
+  const finish=async r=>{let co=0;const ok=r==="win";if(ok&&!wild)dqa("trw",1);if(cfg.zone)zChain(cfg,r,foes[0].i);if(cfg.leg){P.lgd=P.lgd||{};if(P.lgd[foes[0].i]===T()){P.lg2=P.lg2||{};P.lg2[foes[0].i]=T()}P.lgd[foes[0].i]=T()}if(ok)dqa("bw",1);if(r==="caught")dqa("cp",1);
     if(ok){co=(wild?4+Math.floor(foes[0].l/4):cfg.tr.rw)+payC;
-      if(!wild){$("pbtE").style.backgroundPosition="0 0";const t=$("pbtE");t.style.opacity=1;await pbAn(t,[{transform:"translateX(160px)",opacity:0},{transform:"none",opacity:1}],{duration:400});
+      if(!wild){$("pbtE").style.backgroundPosition="0 0";const t=$("pbtE");t.style.opacity=1;await pbAnC(t,[{transform:"translateX(160px)",opacity:0},{transform:"none",opacity:1}],{duration:400});
         await say(cfg.tr.lose||L2("Tu as battu "+TRN+" !","You defeated "+TRN+"!"),800)}
       earn(co);P.w++;const a=team[pi];if(a&&a.h>0)a.w=(a.w||0)+1;
       if(cfg.gym!==undefined&&!P.bd.includes(cfg.gym)){P.bd.push(cfg.gym);window.pkFanfare&&pkFanfare();window.pkRain&&pkRain();await say(L2("Tu obtiens le "+PB_GY[cfg.gym][3]+" "+PB_GY[cfg.gym][5]+" !","You received the "+PB_GY[cfg.gym][4]+" "+PB_GY[cfg.gym][5]+"!"),1200)}
@@ -2189,11 +2238,12 @@ function pbEvo(m,to,stone,done){
   const c=$("card"),fr=m.i,P=pbS(),nn=N[to-1];window.__cb={};
   c.innerHTML='<div class="pbh pbevo" data-notr="1"><div class="tag">✨ '+L2("Évolution","Evolution")+'</div><p>'+esc(L2("Quoi ? "+N[fr-1]+" évolue !","What? "+N[fr-1]+" is evolving!"))+'</p><div class="pbevs"><img id="pbe1" alt="" src="'+SP[fr-1]+'"><img id="pbe2" class="pbsil" alt="" src="'+SP[to-1]+'" style="opacity:0"></div><p class="sub">'+L2("Pour qu'il évolue, retrouve le nom du <b>#"+to+"</b> : commence par « "+esc(nn[0])+" », "+nn.length+" lettres.","To let it evolve, name <b>#"+to+"</b>: starts with “"+esc(nn[0])+"”, "+nn.length+" letters.")+'</p><input type="text" id="in" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-nm="'+esc(nn)+'" placeholder="'+L2("Nom","Name")+'"><button id="ok2">'+L2("Évoluer","Evolve")+'</button><div id="out"></div></div>';
   const inp=$("in");inp.focus({preventScroll:true});let d=0;
+  if(hdOn()){hdGet(fr,m.sh?"fs":"fn").then(u=>{const e=$("pbe1");if(u&&e){e.src=u;e.classList.add("hdx")}});hdGet(to,m.sh?"fs":"fn").then(u=>{const e=$("pbe2");if(u&&e){e.src=u;e.classList.add("hdx")}})}
   const go=async()=>{const v=inp.value.trim();if(!v||d)return;d=1;inp.disabled=true;const good=nm(v,nn);pbCards(to);
     $("out").innerHTML='<div class="res '+(good?"ok":"ko")+'">'+(good?"✓ ":"✗ ")+"#"+to+" "+esc(nn)+"</div>";
     if(good){const a=$("pbe1"),b=$("pbe2");for(let k=0;k<10;k++){const on=k%2;if(a)a.style.opacity=on?0:1;if(b)b.style.opacity=on?1:0;await new Promise(r=>setTimeout(r,320-k*24))}
       if(a)a.style.opacity=0;if(b){b.style.opacity=1;b.classList.remove("pbsil");pbAn(b,[{filter:"brightness(8)"},{filter:"brightness(1)"}],{duration:700})}
-      const o=pbSt(m);m.i=to;const nw=pbSt(m);if(m.h>0)m.h=Math.min(nw[0],m.h+nw[0]-o[0]);m.ev=0;P.cg[to]=1;if(m.sh){P.shc=P.shc||{};P.shc[to]=1}
+      const o=pbSt(m);m.i=to;const nw=pbSt(m);if(m.h>0)m.h=Math.min(nw[0],m.h+nw[0]-o[0]);m.ev=0;P.cg[to]=1;dqa("ev",1);if(m.sh){P.shc=P.shc||{};P.shc[to]=1}
       for(const k of pbAt(to,m.l).concat(pbLearn(to,m.l).slice(-1)))if(!m.m.includes(k)&&m.m.length<4){m.m.push(k);m.p.push(pbMv(k)[5])}
       if(stone)P.bag[stone]=Math.max(0,(P.bag[stone]||0)-1);
       sfxPlay("evo")||window.pkFanfare&&pkFanfare();window.pkRain&&pkRain();
@@ -2253,6 +2303,7 @@ function pbMon(i,pc,msg){
     (pc&&P.t.length<6?'<button id="pbi">➕ '+L2("Dans l'équipe","Add to team")+"</button>":"")+
     (pc&&P.t.length>=6?P.t.map((t,j)=>'<button class="sec pbsw" data-j="'+j+'">⇄ '+esc(N[t.i-1])+"</button>").join(""):"")+
     '</div><button class="sec" id="pbb">← '+L2("Retour","Back")+"</button></div>";
+  if(hdOn())hdGet(m.i,m.sh?"fs":"fn").then(u=>{const e=c.querySelector(".pbmd img");if(u&&e){e.src=u;e.classList.remove("pbshy");e.classList.add("hdx")}});
   const q=(id,f)=>{const e=$(id);if(e)e.onclick=f};
   q("pbb",()=>pc?pbPC():adv());
   q("pbe",()=>pbEvo(m,evo,null,()=>pbMon(i,0)));
@@ -2359,7 +2410,7 @@ function pbDgFight(d,room,sh,cb){const st=Math.min(5,sh||0);
 HOW.A={toString:()=>L2("Comment faire : 🗡 Donjons → gagne le donjon d'arène suivant ; au bout, le champion affronte ton équipe d'Aventure.","How to: 🗡 Dungeons → win the next gym dungeon; at the end, the leader battles your Adventure team.")};
 
 /* ===== Révisions fluides : regroupement par clavier et résumé de session ===== */
-function rvGroup(a){const num=k=>k[0]==="b"||k[0]==="f",A=a.filter(num),B=a.filter(k=>!num(k)),o=[];let x=A.length>=B.length;
+function rvGroup(a){a=a.map(k=>[k,(S.c[k]?S.c[k].due:0)+Math.random()*.9]).sort((x,y)=>x[1]-y[1]).map(x=>x[0]);const num=k=>k[0]==="b"||k[0]==="f",A=a.filter(num),B=a.filter(k=>!num(k)),o=[];let x=A.length>=B.length;
   while(A.length||B.length){const src=x?A:B;o.push(...src.splice(0,6));x=!x}return o}
 function rvSum(){const z=free?FS:SS,n=z.n||0,acc=n?Math.round(100*z.ok/n):0,av=n&&SS.tm?(SS.tm/n/1000).toFixed(1):"–",perf=n>=5&&z.ok===n;
   return '<div class="rvsum"><div class="big">'+(perf?"🏆":acc>=80?"✨":"✅")+'</div><div class="res">'+(perf?L2("Session parfaite !","Perfect session!"):L2("Session terminée","Session complete"))+"</div>"+(n?'<div class="rvst"><span><b>'+z.ok+"/"+n+"</b><small>"+L2("bonnes","correct")+"</small></span><span><b>"+acc+"%</b><small>"+L2("réussite","accuracy")+"</small></span>"+(free?"":"<span><b>🔥 "+(SS.bc||0)+"</b><small>"+L2("meilleure série","best streak")+"</small></span><span><b>"+av+" s</b><small>"+L2("par réponse","per answer")+"</small></span>")+"</div>"+(SS.fa?'<p class="sub">⚡ '+SS.fa+L2(" réponses éclair (moins de 3,5 s) : +"," lightning answers (under 3.5 s): +")+SS.fa+" 🪙</p>":""):"")+"</div>"}
@@ -2729,11 +2780,11 @@ function ctVisitor(){const g=S.g;if(ctVisLeft()<=0)return game("",0);
   c.innerHTML='<div class="cty" data-notr="1"><div class="tag">🚶 '+L2("Un Pokémon se promène en ville","A Pokémon is strolling through town")+'</div><div class="big rvq">'+im(id)+'</div><p class="sub">'+L2("Qui est-ce ? Appelle-le par son nom : il laisse un cadeau.","Who is it? Call it by its name: it leaves a gift.")+'</p><div class="rvr"><input type="text" id="in" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" data-nm="'+esc(N[id-1])+'" placeholder="'+L2("Nom","Name")+'"><button id="ok2">➜</button></div><div id="out"></div></div>';
   const inp=$("in");inp.focus({preventScroll:true});let d=0;
   const go=()=>{const v=inp.value.trim();if(!v||d)return;d=1;inp.disabled=true;const ok=nm(v,N[id-1]);g.vs=g.vs&&g.vs.d===T()?g.vs:{d:T(),n:0};g.vs.n++;let gift="";
-    if(ok){const co=15+Math.floor(Math.random()*16);earn(co);gift="+"+co+" 🪙";const P=S.pb;if(P&&P.av>=0&&Math.random()<.35){const k=["pb","po","sp","gb"][Math.floor(Math.random()*4)];P.bag[k]=(P.bag[k]||0)+1;gift+=" · "+pbII(k)+" "+pbIN(k)}}
+    if(ok){dqa("vi",1);const co=15+Math.floor(Math.random()*16);earn(co);gift="+"+co+" 🪙";const P=S.pb;if(P&&P.av>=0&&Math.random()<.35){const k=["pb","po","sp","gb"][Math.floor(Math.random()*4)];P.bag[k]=(P.bag[k]||0)+1;gift+=" · "+pbII(k)+" "+pbIN(k)}}
     save();$("out").innerHTML='<div class="res '+(ok?"ok":"ko")+'">'+(ok?"✓ ":"✗ ")+"#"+id+" "+esc(N[id-1])+"</div>";
     setTimeout(()=>game(ok?L2(N[id-1]+" te remercie : ",N[id-1]+" thanks you: ")+gift:L2(N[id-1]+" repart, un peu vexé.",N[id-1]+" walks off, a bit offended."),0),ok?1000:1600)};
   $("ok2").onclick=go;inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();go()}}}
-function ctDoHarvest(){const g=S.g;if(!ctHarvest())return game("",0);g.hv=T();const out=[];
+function ctDoHarvest(){const g=S.g;if(!ctHarvest())return game("",0);g.hv=T();dqa("hv",1);const out=[];
   const lm=lvl("mus");if(lm){const co=Math.max(5,Math.round(mast()*lm/2));earn(co);out.push("🏛 +"+co+" 🪙")}
   const P=S.pb,ok=P&&P.av>=0&&P.t&&P.t.length;
   const lb=lvl("bay");if(lb){if(ok){const x=ctBay(lb);for(const k in x)if(x[k])P.bag[k]=(P.bag[k]||0)+x[k];out.push("🌳 "+Object.keys(x).filter(k=>x[k]).map(k=>x[k]+" "+pbII(k)).join(" "))}else{earn(20*lb);out.push("🌳 +"+20*lb+" 🪙")}}
@@ -2804,8 +2855,8 @@ function shopView(){const g=S.g,E=EN(),P=S.pb;g.dk=g.dk||[];
   return h}
 /* ---------- Quêtes ---------- */
 function questView(){const g=S.g,E=EN(),L=QS.length,qc=g.qc&&g.qc.d===T()?g.qc:(g.qc={d:T(),c:[]});
-  const ids=[T()%L,(T()+3)%L,(T()+5)%L];
-  const ms=86400000-(Date.now()%86400000),hh=Math.floor(ms/36e5),mm=Math.floor(ms/6e4)%60;
+  const ids=qPick();
+  const ms=(()=>{const d=new Date(),m=new Date(d);m.setHours(24,0,0,0);return m-d})(),hh=Math.floor(ms/36e5),mm=Math.floor(ms/6e4)%60;
   let h='<div class="uxq" data-notr="1"><div class="uxqh"><b>📜 '+(E?"Daily quests":"Quêtes du jour")+"</b><small>⏳ "+(E?"New ones in ":"Nouvelles dans ")+hh+" h "+mm+" min</small></div>";
   ids.forEach(i=>{const x=QS[i],v=Math.min(x[4],x[3]()),dn=qc.c.includes(x[0]),ok=v>=x[4],p=Math.round(100*v/x[4]);
     h+='<div class="uxqc tilt3d'+(dn?" dn":ok?" ok":"")+'"><div class="uxring" style="--p:'+p+'"><span>'+(dn?"✓":p+"%")+'</span></div><div class="uxqb"><b>'+esc(tr(String(x[1])))+"</b><small>"+v+" / "+x[4]+'</small><div class="uxbar"><i style="width:'+p+'%"></i></div></div>'+
@@ -2890,7 +2941,7 @@ function uxStats(){const E=EN(),c=$("card");let m=0,tot=0,okk=0;const gm=GR.map(
   const cur=S.st.l>=T()-1?S.st.n:0,acc=tot?Math.round(100*okk/tot):0,today=(S.hs[T()]||[0,0])[1];
   c.innerHTML='<div class="uxsv" data-notr="1"><div class="uxshero tilt3d"><div class="uxbring" style="--p:'+(100*m/1025).toFixed(1)+'"><div><b>'+m+"</b><small>/ 1025</small></div></div><div><small>"+(E?"Pokémon mastered":"Pokémon maîtrisés")+"</small><b>"+(100*m/1025).toFixed(1)+' %</b><small>'+(E?"Trainer level ":"Niveau de dresseur ")+tlv()+" · "+(S.xp||0)+" XP</small></div></div>"+
     '<div class="uxtiles">'+[["🔥",cur,E?"current streak":"série en cours"],["🏆",S.st.best||0,E?"best streak":"record de série"],["🎯",acc+"%",E?"accuracy":"réussite"],["📝",tot,E?"answers":"réponses"],["📅",today,E?"today":"aujourd'hui"],["⚡",S.spb||0,E?"sprint record":"record sprint"]].map(t=>'<div class="uxtile tilt3d"><span>'+t[0]+"</span><b>"+t[1]+"</b><small>"+t[2]+"</small></div>").join("")+"</div>"+
-    '<h3 class="uxh">📈 '+(E?"Last 7 days":"7 derniers jours")+'</h3><div class="uxchart">'+days.map(([d,x])=>{const a=x[1]?x[0]/x[1]:0;return'<div class="uxcol"><em>'+(x[1]||"")+'</em><i style="height:'+Math.max(3,Math.round(100*x[1]/mx))+"%;background:"+(x[1]?(a>=.85?"var(--ok)":a>=.6?"var(--gold)":"var(--ko)"):"var(--bd)")+'"></i><small>'+new Date(d*864e5).toLocaleDateString(E?"en-US":"fr-FR",{weekday:"short"}).slice(0,3)+"</small></div>"}).join("")+"</div>"+
+    '<h3 class="uxh">📈 '+(E?"Last 7 days":"7 derniers jours")+'</h3><div class="uxchart">'+days.map(([d,x])=>{const a=x[1]?x[0]/x[1]:0;return'<div class="uxcol"><em>'+(x[1]||"")+'</em><i style="height:'+Math.max(3,Math.round(100*x[1]/mx))+"%;background:"+(x[1]?(a>=.85?"var(--ok)":a>=.6?"var(--gold)":"var(--ko)"):"var(--bd)")+'"></i><small>'+new Date(d*864e5).toLocaleDateString(E?"en-US":"fr-FR",{timeZone:"UTC",weekday:"short"}).slice(0,3)+"</small></div>"}).join("")+"</div>"+
     '<h3 class="uxh">🗺 '+(E?"By generation":"Par génération")+"</h3>"+GR.map((r,x)=>{const n=r[1]-r[0]+1;return gm[x][1]?'<div class="uxgen"><b>Gen '+(x+1)+'</b><div class="uxbar"><i style="width:'+(100*gm[x][0]/n).toFixed(1)+'%"></i></div><small>'+gm[x][0]+"/"+n+"</small></div>":""}).join("")+
     '<h3 class="uxh">🏅 '+(E?"Milestones":"Paliers")+'</h3><div class="uxms">'+[10,25,50,100,151,250,500,1025].map(x=>'<div class="uxm'+(m>=x?" on":"")+'"><span>'+(m>=x?"🏅":"🔒")+"</span><b>"+x+"</b></div>").join("")+"</div>"+
     '<div class="uxbtns"><button id="spb">⚡ Sprint 60 s<small>'+(E?"record ":"record ")+(S.spb||0)+'</small></button><button class="sec" id="bs">'+(E?"Back to review":"Retour aux révisions")+"</button></div></div>";
@@ -2913,7 +2964,7 @@ detail=uxDetail;
 (function(){const g0=game;game=function(){g0.apply(this,arguments);const c=$("card"),st=c.querySelector(".set");if(!st)return;const E=EN(),g=S.g;
   const h3=st.querySelector(":scope>h3");if(h3&&/🪙/.test(h3.textContent)){const d=document.createElement("div");d.className="uxghero tilt3d";d.setAttribute("data-notr","1");
     d.innerHTML='<div class="uxcoin3d"><i></i></div><div><small>'+(E?"Coins":"Pièces")+"</small><b>"+g.co+' 🪙</b></div><div class="uxgk"><span>⚡ '+(g.en||0)+"/"+kcap()+"</span><span>"+(valid()?"☀️":"😴")+"</span></div>";h3.replaceWith(d)}
-  const tabs=st.querySelector(".row2");if(tabs&&tabs.querySelector(".tb")){tabs.classList.add("uxtabs");tabs.removeAttribute("style");tabs.querySelectorAll(".tb").forEach(b=>{b.removeAttribute("style");b.classList.toggle("on",+b.dataset.t===GT)})}
+  const tabs=st.querySelector(".row2");if(tabs&&tabs.querySelector(".tb")){tabs.classList.add("uxtabs");tabs.removeAttribute("style");tabs.querySelectorAll(".tb").forEach(b=>{b.removeAttribute("style");b.classList.toggle("on",+b.dataset.t===GT);if(EN()&&+b.dataset.t===4)b.textContent="🏅 Awards"})}
   st.querySelectorAll(":scope>.res").forEach(r=>{if(r.textContent.length>90){r.classList.add("uxday");r.onclick=()=>r.classList.toggle("open")}});
   st.querySelectorAll(":scope>.sub").forEach(s=>{if(/^⚡/.test(s.textContent.trim()))s.classList.add("uxkeys")});}})();
 
@@ -2953,7 +3004,7 @@ function zEncounter(zi,g,target){const z=BD_ZN[zi];if(!z)return zMap();if(!pbAli
   const t=zTime(),L=zList(z,g),iv=zInv(z[0]),inv=iv&&iv.zi===zi&&g===iv.g?iv.id:0;let pool=L.filter(e=>e.w[t]>0||e.id===inv);if(!pool.length)pool=L;zDisc(zi);
   const ws=pool.map(e=>Math.max(e.w[t],inv===e.id?20:0)*(target&&e.id===target?4:1)*(inv===e.id?5:1)*(typeof dyZoneMul==="function"?dyZoneMul(e.id):1)),tot=ws.reduce((a,b)=>a+b,0);let r=Math.random()*tot,k=0;while(k<pool.length-1&&r>=ws[k]){r-=ws[k];k++}
   const e=pool[k],cap=pbCap()+5,lv=Math.max(2,Math.min(cap,e.lo+Math.floor(Math.random()*(e.hi-e.lo+1)))),P=pbS();
-  P.lz=[zi,g,target||0];P.sn=P.sn||{};P.sn[e.id]=1;P.hunt=target||0;P.inv=inv;
+  P.lz=[zi,g,target||0];{const o=dqo();o.zx=o.zx||[];if(!o.zx.includes(zi))o.zx.push(zi)}P.sn=P.sn||{};P.sn[e.id]=1;P.hunt=target||0;P.inv=inv;
   const m=pbNew(e.id,lv);if(P.rad>0)P.rad--;P.hunt=0;P.inv=0;save();
   pbBattle({k:"w",mon:m,zone:{zi,g,target:target||0}})}
 /* la chaîne de chasse augmente la chance de chromatique */
@@ -3092,34 +3143,34 @@ function pbScene(t,tod){
   const N=k=>night?.45:morn?.92:1;
   let body="";
   if(t==="cave"){
-    body='<rect width="400" height="300" fill="url(#cv)"/><path d="M0 0H400V40L380 70L365 38L340 85L320 35L300 60L280 30L255 78L235 34L210 66L190 30L170 72L150 36L125 64L100 28L80 74L60 40L35 66L15 34L0 52Z" fill="#1b1424"/>'+
+    body='<rect width="400" height="300" fill="url(#pbsc-cv)"/><path d="M0 0H400V40L380 70L365 38L340 85L320 35L300 60L280 30L255 78L235 34L210 66L190 30L170 72L150 36L125 64L100 28L80 74L60 40L35 66L15 34L0 52Z" fill="#1b1424"/>'+
       '<path d="M0 150 Q60 120 120 145 T240 140 T400 135V300H0Z" fill="#3a2f45"/><path d="M0 175 Q80 160 160 172 T320 168 T400 172V300H0Z" fill="#4a3d55"/>'+
       [[60,140],[300,128],[350,150]].map(([x,y])=>'<g transform="translate('+x+' '+y+')"><polygon points="0,0 6,-22 12,0" fill="#8fe3ff" opacity=".8"/><polygon points="8,0 13,-14 18,0" fill="#c7a8ff" opacity=".7"/><circle cx="9" cy="-8" r="16" fill="#8fe3ff" opacity=".12"/></g>').join("");
-    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="cv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#140f1d"/><stop offset=".55" stop-color="#2b2236"/><stop offset="1" stop-color="#3d3248"/></linearGradient></defs>'+body+"</svg>"}
+    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="pbsc-cv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#140f1d"/><stop offset=".55" stop-color="#2b2236"/><stop offset="1" stop-color="#3d3248"/></linearGradient></defs>'+body+"</svg>"}
   if(t==="gym"){
-    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f4a"/><stop offset="1" stop-color="#4a5076"/></linearGradient><linearGradient id="gf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9b48a"/><stop offset="1" stop-color="#a88c5f"/></linearGradient><radialGradient id="gl" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#fff8d0" stop-opacity=".55"/><stop offset="1" stop-color="#fff8d0" stop-opacity="0"/></radialGradient></defs>'+
-      '<rect width="400" height="150" fill="url(#gw)"/>'+Array.from({length:9},(_,k)=>'<rect x="'+(k*48-6)+'" y="20" width="22" height="110" rx="4" fill="#ffffff" opacity=".05"/>').join("")+
-      '<rect y="128" width="400" height="22" fill="#20253c"/><rect y="150" width="400" height="150" fill="url(#gf)"/>'+
+    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="pbsc-gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f4a"/><stop offset="1" stop-color="#4a5076"/></linearGradient><linearGradient id="pbsc-gf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9b48a"/><stop offset="1" stop-color="#a88c5f"/></linearGradient><radialGradient id="pbsc-gl" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#fff8d0" stop-opacity=".55"/><stop offset="1" stop-color="#fff8d0" stop-opacity="0"/></radialGradient></defs>'+
+      '<rect width="400" height="150" fill="url(#pbsc-gw)"/>'+Array.from({length:9},(_,k)=>'<rect x="'+(k*48-6)+'" y="20" width="22" height="110" rx="4" fill="#ffffff" opacity=".05"/>').join("")+
+      '<rect y="128" width="400" height="22" fill="#20253c"/><rect y="150" width="400" height="150" fill="url(#pbsc-gf)"/>'+
       '<g stroke="#fff" stroke-opacity=".55" stroke-width="2" fill="none"><rect x="30" y="165" width="340" height="125"/><line x1="200" y1="165" x2="200" y2="290"/><circle cx="200" cy="228" r="26"/></g>'+
-      '<polygon points="70,0 110,0 170,300 10,300" fill="url(#gl)"/><polygon points="290,0 330,0 390,300 230,300" fill="url(#gl)"/></svg>'}
+      '<polygon points="70,0 110,0 170,300 10,300" fill="url(#pbsc-gl)"/><polygon points="290,0 330,0 390,300 230,300" fill="url(#pbsc-gl)"/></svg>'}
   if(t==="leg"){
-    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="lg" cx=".5" cy=".35" r=".8"><stop offset="0" stop-color="#5a3a9a"/><stop offset=".6" stop-color="#22134a"/><stop offset="1" stop-color="#0b0620"/></radialGradient></defs><rect width="400" height="300" fill="url(#lg)"/>'+
+    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="pbsc-lg" cx=".5" cy=".35" r=".8"><stop offset="0" stop-color="#5a3a9a"/><stop offset=".6" stop-color="#22134a"/><stop offset="1" stop-color="#0b0620"/></radialGradient></defs><rect width="400" height="300" fill="url(#pbsc-lg)"/>'+
       Array.from({length:40},(_,k)=>'<circle cx="'+((k*67)%400)+'" cy="'+((k*31)%170)+'" r="'+(k%5?0.9:1.8)+'" fill="#fff" opacity="'+(.3+(k%5)*.14)+'"/>').join("")+
       '<path class="pbau" d="M-20 90 C60 40 140 120 220 70 S360 40 420 80" stroke="#7dffcf" stroke-width="18" fill="none" opacity=".18"/><path class="pbau" d="M-20 110 C80 70 160 140 240 95 S360 70 420 105" stroke="#c99bff" stroke-width="12" fill="none" opacity=".2"/>'+
       '<path d="M0 175 Q100 150 200 168 T400 160V300H0Z" fill="#1d1236"/><path d="M0 200 Q120 185 240 198 T400 192V300H0Z" fill="#2a1a4a"/></svg>'}
-  const water=t==="water";const BL2='<filter id="bl2"><feGaussianBlur stdDeviation="2.2"/></filter>';
-  body='<rect width="400" height="300" fill="url(#sk)"/>'+sun+clouds+
-    '<path d="M0 132 L40 104 L72 122 L110 86 L150 120 L190 98 L230 124 L270 92 L312 120 L350 100 L400 126 V160 H0Z" fill="'+(night?"#1b2a52":morn?"#c99a9a":"#8fb4d6")+'" opacity=".75" filter="url(#bl2)"/>';
+  const water=t==="water";const BL2='<filter id="pbsc-bl2"><feGaussianBlur stdDeviation="2.2"/></filter>';
+  body='<rect width="400" height="300" fill="url(#pbsc-sk)"/>'+sun+clouds+
+    '<path d="M0 132 L40 104 L72 122 L110 86 L150 120 L190 98 L230 124 L270 92 L312 120 L350 100 L400 126 V160 H0Z" fill="'+(night?"#1b2a52":morn?"#c99a9a":"#8fb4d6")+'" opacity=".75" filter="url(#pbsc-bl2)"/>';
   if(water){
-    body+='<rect y="150" width="400" height="150" fill="url(#sea)"/>'+Array.from({length:9},(_,k)=>'<path class="pbwv" d="M'+((k*47)%380)+" "+(165+k*14)+' q10 -4 20 0 t20 0" stroke="#fff" stroke-opacity="'+(.25+(k%3)*.1)+'" stroke-width="2" fill="none"/>').join("")+
+    body+='<rect y="150" width="400" height="150" fill="url(#pbsc-sea)"/>'+Array.from({length:9},(_,k)=>'<path class="pbwv" d="M'+((k*47)%380)+" "+(165+k*14)+' q10 -4 20 0 t20 0" stroke="#fff" stroke-opacity="'+(.25+(k%3)*.1)+'" stroke-width="2" fill="none"/>').join("")+
       '<rect y="150" width="400" height="3" fill="#fff" opacity=".35"/>';
-    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs>'+sky("sk")+BL2+'<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(night?"#16305e":"#3aa6e0")+'"/><stop offset="1" stop-color="'+(night?"#0b1b3d":"#1f6fb8")+'"/></linearGradient></defs>'+body+"</svg>"}
+    return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs>'+sky("pbsc-sk")+BL2+'<linearGradient id="pbsc-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(night?"#16305e":"#3aa6e0")+'"/><stop offset="1" stop-color="'+(night?"#0b1b3d":"#1f6fb8")+'"/></linearGradient></defs>'+body+"</svg>"}
   const forest=t==="forest";
-  body+='<path d="M0 140 Q70 118 140 136 T280 130 T400 134 V170 H0Z" fill="'+(night?"#1f4430":"#6fbf5e")+'" filter="url(#bl)"/>';
+  body+='<path d="M0 140 Q70 118 140 136 T280 130 T400 134 V170 H0Z" fill="'+(night?"#1f4430":"#6fbf5e")+'" filter="url(#pbsc-bl)"/>';
   const trees=Array.from({length:forest?22:13},(_,k)=>{const x=(k*(forest?19:31)+7)%410,s=forest?1.25+(k%3)*.25:.8+(k%3)*.2,y=forest?150:146;return'<g transform="translate('+x+' '+y+') scale('+s+')"><rect x="-2" y="-6" width="4" height="10" fill="'+(night?"#2a1f18":"#6b4a2e")+'"/><circle cx="0" cy="-14" r="11" fill="'+(night?"#173a28":forest?"#2f7a3c":"#3f944a")+'"/><circle cx="-6" cy="-9" r="8" fill="'+(night?"#143322":forest?"#29703a":"#378c43")+'"/><circle cx="4" cy="-19" r="5" fill="#fff" opacity="'+(night?.03:.12)+'"/></g>'}).join("");
-  body+='<g filter="url(#bl)">'+trees+'</g>'+'<rect y="152" width="400" height="148" fill="url(#gr)"/><rect y="152" width="400" height="148" fill="url(#gl2)"/>'+
+  body+='<g filter="url(#pbsc-bl)">'+trees+'</g>'+'<rect y="152" width="400" height="148" fill="url(#pbsc-gr)"/><rect y="152" width="400" height="148" fill="url(#pbsc-gl2)"/>'+
     (forest?'<g opacity="'+(night?.05:.18)+'" fill="#fff8c0">'+[[80,0],[250,0]].map(([x])=>'<polygon points="'+x+',0 '+(x+30)+',0 '+(x+70)+',300 '+(x-20)+',300"/>').join("")+"</g>":"");
-  return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs>'+sky("sk")+BL2+'<filter id="bl"><feGaussianBlur stdDeviation="1.4"/></filter><radialGradient id="gl2" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#fff" stop-opacity="'+(night?.04:.16)+'"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(night?"#24503a":morn?"#8ccf68":"#86d36a")+'"/><stop offset="1" stop-color="'+(night?"#163626":"#4f9e3e")+'"/></linearGradient></defs>'+body+"</svg>"}
+  return'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs>'+sky("pbsc-sk")+BL2+'<filter id="pbsc-bl"><feGaussianBlur stdDeviation="1.4"/></filter><radialGradient id="pbsc-gl2" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#fff" stop-opacity="'+(night?.04:.16)+'"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><linearGradient id="pbsc-gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(night?"#24503a":morn?"#8ccf68":"#86d36a")+'"/><stop offset="1" stop-color="'+(night?"#163626":"#4f9e3e")+'"/></linearGradient></defs>'+body+"</svg>"}
 /* ===== Prise en main progressive + programme du jour + pastilles (src/guide.js) =====
    Les systèmes se débloquent petit à petit : Jeu (ville, quêtes, histoire…) à 3 Pokémon appris, Aventure à 6.
    Un joueur déjà avancé a tout débloqué d'office (aucune fenêtre). */
@@ -3147,7 +3198,7 @@ function guPlan(){const t=T(),due=Object.keys(S.c).filter(k=>S.c[k].due<=t).leng
   it.push(["🎯",L2("Objectif : ","Goal: ")+Math.min(gd,gl)+" / "+gl+L2(" réponses"," answers"),gd>=gl,()=>{const b=$("fr");if(b)b.click();else{build();next()}}]);
   if(guOpen("jeu")){
     try{if(typeof ctHarvest==="function"&&ctHarvest())it.push(["🌅",L2("Récolte de la ville prête","Town harvest ready"),0,()=>game("",0)])}catch(e){}
-    try{const L=QS.length,qc=S.g.qc&&S.g.qc.d===t?S.g.qc:{c:[]},n=[t%L,(t+3)%L,(t+5)%L].filter(i=>{const x=QS[i];return x[3]()>=x[4]&&!qc.c.includes(x[0])}).length;if(n)it.push(["📜",n+L2(" quête(s) à réclamer"," quest(s) to claim"),0,()=>game("",3)])}catch(e){}
+    try{const L=QS.length,qc=S.g.qc&&S.g.qc.d===t?S.g.qc:{c:[]},n=qPick().filter(i=>{const x=QS[i];return x[3]()>=x[4]&&!qc.c.includes(x[0])}).length;if(n)it.push(["📜",n+L2(" quête(s) à réclamer"," quest(s) to claim"),0,()=>game("",3)])}catch(e){}
     if(newCh())it.push(["📖",L2("Nouveau chapitre d'histoire","New story chapter"),0,()=>game("",5)])}
   if(guOpen("adv")&&S.pb&&S.pb.av>=0){const P=S.pb;
     try{const gi=(P.bd||[]).length;if(gi<8)it.push(["🏟",L2("Prochain badge : ","Next badge: ")+PB_GY[gi][EN()?1:0],0,()=>{const k=DG.findIndex(d=>d.gym===gi);dungeon(k)}])}catch(e){}
@@ -3203,7 +3254,7 @@ const syKey=()=>{const a=new Uint8Array(20);crypto.getRandomValues(a);return [..
 /* ===== Le temps qui passe (src/days.js) =====
    Jour 1 = premier lancement (heure du téléphone). Les jours s'écoulent en vrai, à minuit heure locale.
    Mécaniques : évènement du jour de la semaine, saisons (mois réel), paliers de jours, Loto Pokédex quotidien, écran « nouveau jour ». */
-const dyLD=(t)=>{t=t||Date.now();return Math.floor((t-new Date(t).getTimezoneOffset()*6e4)/864e5)};
+const dyLD=(t)=>{t=t||Date.now();return Math.floor((t-new Date(t).getTimezoneOffset()*6e4)/864e5)}; /* identique à T() */
 function dyInit(){if(S.d0)return;const hs=Object.keys(S.hs||{}).map(Number).filter(x=>x>0);S.d0=hs.length?Math.min(...hs):dyLD();if(!S.tid)S.tid=String(10000+Math.floor(Math.random()*90000));save()}
 const dyN=()=>{dyInit();return dyLD()-S.d0+1};
 const dyWd=()=>new Date().getDay();
@@ -3231,7 +3282,7 @@ function dyMilestone(){const n=dyN(),got=[];S.dm=S.dm||0;for(const m of DY_MS)if
 function dyClock(){let el=$("dyck");const g=document.querySelector(".hd>div");if(!el&&g){el=document.createElement("button");el.id="dyck";el.className="sec gear dyck";el.type="button";el.setAttribute("data-notr","1");g.insertBefore(el,g.children[1]||null);el.onclick=()=>dySplash(1)}
   if(!el)return;const d=new Date(),tz=typeof zTime==="function"?zTime():1,ic=["🌅","☀️","🌙"][tz];el.innerHTML="<b>"+L2("J","D")+dyN()+"</b><span>"+ic+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")+"</span>";
   if(S.dl!==undefined&&S.dl!==dyLD()&&!document.querySelector(".guov,.chest"))dySplash()}
-setInterval(dyClock,20000);setTimeout(()=>{dyInit();dyClock();if(S.dl!==dyLD())dyWaitSplash()},700);
+setInterval(dyClock,20000);setTimeout(()=>{dyInit();if(dyN()===1&&S.dl===undefined){S.dl=dyLD();save()}dyClock();if(S.dl!==dyLD())dyWaitSplash()},700);
 function dyWaitSplash(){let k=0;const t=setInterval(()=>{if(++k>40||!document.querySelector(".chest,.guov")){clearInterval(t);if(S.dl!==dyLD())dySplash()}},500)}
 /* --- écran « nouveau jour » (une fois par jour, et en touchant l'horloge) --- */
 function dySplash(manual){if(document.querySelector(".dysp"))return;const first=S.dl!==dyLD();S.dl=dyLD();const got=first?dyMilestone():[];save();
@@ -3251,7 +3302,7 @@ function dyLoto(){if(S.lt===dyLD())return;const ks=[...new Set(Object.keys(S.c).
   const ov=document.createElement("div");ov.className="guov dysp";ov.setAttribute("data-notr","1");
   ov.innerHTML='<div class="gubox"><div class="dyn">🎟 '+L2("Loto Pokédex","Pokédex Lotto")+'</div><small>'+L2("Ton n° de dresseur : ","Your trainer ID: ")+tid+'</small><div class="dylon">N° '+num+'</div><p>'+L2("Quel Pokémon porte ce numéro ?","Which Pokémon has this number?")+'</p><div class="rvr"><input type="text" class="dyin" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="'+L2("Nom","Name")+'"><button class="dygo">➜</button></div><div class="dyout"></div></div>';
   document.body.appendChild(ov);const inp=ov.querySelector(".dyin"),out=ov.querySelector(".dyout");inp.focus({preventScroll:true});let d=0;
-  const go=()=>{const v=inp.value.trim();if(!v||d)return;d=1;inp.disabled=true;S.lt=dyLD();const ok=nm(v,N[id-1]),co=ok?50+[0,100,300,1000,5000][match]:0;if(co)earn(co);save();
+  const go=()=>{const v=inp.value.trim();if(!v||d)return;d=1;inp.disabled=true;S.lt=dyLD();dqa("lo",1);const ok=nm(v,N[id-1]),co=ok?50+[0,100,300,1000,5000][match]:0;if(co)earn(co);save();
     out.innerHTML='<div class="res '+(ok?"ok":"ko")+'">'+(ok?"✓ ":"✗ ")+"#"+id+" "+esc(N[id-1])+"</div><p>"+(ok?L2("Gagné : +"+co+" 🪙","You win: +"+co+" 🪙")+(match?L2(" ("+match+" chiffre(s) en commun avec ton n° !)"," ("+match+" digit(s) match your ID!)"):""):L2("Raté… retente demain.","Missed… try again tomorrow."))+'</p><button id="dyx">OK</button>';
     if(ok){window.uxSnd&&uxSnd("cash");window.pkRain&&pkRain()}ov.querySelector("#dyx").onclick=()=>ov.remove()};
   ov.querySelector(".dygo").onclick=go;inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();go()}};
@@ -3259,6 +3310,83 @@ function dyLoto(){if(S.lt===dyLD())return;const ks=[...new Set(Object.keys(S.c).
 /* --- programme du jour : l'évènement en tête --- */
 (function(){const p0=guPlan;guPlan=function(){const it=p0(),w=dyWd(),ev=DY_EV[w];it.unshift([ev[0],L2("Jour "+dyN()+" · "+ev[1],"Day "+dyN()+" · "+ev[2]),0,()=>dySplash(1)]);
   if(S.lt!==dyLD()&&guL()>=3)it.splice(1,0,["🎟",L2("Loto Pokédex du jour","Daily Pokédex Lotto"),0,()=>dyLoto()]);return it}})();
+/* ===== Mise à niveau des « bâtiments » restés plus bas (src/modes.js) =====
+   Écran de fin commun (mdEnd) pour Sprint, Safari, Duel, Donjons ; Sprint refait (chrono visuel, badges, série, XP d'équipe) ;
+   filtres du Pokédex. */
+function mdEnd(o){const c=$("card");window.__cb={};
+  c.innerHTML='<div class="mdend" data-notr="1"><div class="big mdic">'+o.icon+'</div><div class="res'+(o.ok?" ok":"")+' mdti">'+esc(o.title)+"</div>"+
+    (o.tiles&&o.tiles.length?'<div class="rvst">'+o.tiles.map(t=>'<span class="tilt3d"><b>'+t[0]+"</b><small>"+esc(t[1])+"</small></span>").join("")+"</div>":"")+
+    (o.lines||[]).filter(Boolean).map(l=>'<p class="sub mdl">'+esc(EN()?tr(l):l)+"</p>").join("")+'<div class="mdb">'+o.btn.map((b,k)=>'<button id="'+b[0]+'"'+(k?' class="sec"':"")+">"+b[1]+"</button>").join("")+"</div></div>";
+  o.btn.forEach(b=>{const e=$(b[0]);if(e)e.onclick=b[2]});if(o.ok){window.pkRain&&pkRain();window.uxSnd&&uxSnd("medal")}}
+
+/* ---------- Sprint 60 s ---------- */
+sprint=function(){const ks=Object.keys(S.c).filter(k=>k[0]==="a"||k[0]==="b"),c=$("card"),back=()=>{build();next()};
+  if(ks.length<4){c.innerHTML='<p class="sub">'+L2("Apprends d'abord quelques Pokémon, puis reviens.","Learn a few Pokémon first, then come back.")+'</p><button id="sb2">OK</button>';$("sb2").onclick=back;return}
+  let ok=0,n=0,cb=0,best=0,done=false,lock=false;const T0=Date.now(),D=6e4,end=T0+D,tok=window.__cb={};
+  const fin=()=>{if(done)return;done=true;clearInterval(iv);const rec=S.spb||0,nr=ok>rec,vv=valid(),co=vv?Math.floor(ok/2):0;if(co)earn(co);dqa("sp",ok,1);if(nr)S.spb=ok;
+    let up=[];try{const P=S.pb;if(P&&P.t&&ok)P.t.forEach((m,j)=>{const u=pbXpQuiet(m,pbTrainX(m,j,ok/3));if(u)up.push(u)})}catch(e){}save();
+    mdEnd({icon:nr?"🏆":"⚡",ok:nr,title:nr?L2("Nouveau record : "+ok+" !","New record: "+ok+"!"):L2("Sprint terminé","Sprint over"),
+      tiles:[[ok+"/"+n,L2("bonnes","correct")],[(n?Math.round(100*ok/n):0)+"%",L2("réussite","accuracy")],["🔥 "+best,L2("meilleure série","best streak")],[nr?ok:rec,L2("record","record")]],
+      lines:[vv?"+"+co+" 🪙":L2("Valide ta journée (révisions) pour gagner des pièces au Sprint.","Validate your day (reviews) to earn coins in Sprint."),up.length?"⬆️ "+up.join(", "):""],
+      btn:[["sa","⚡ "+L2("Rejouer","Play again"),sprint],["sb2",L2("Retour aux révisions","Back to reviews"),back]]})};
+  const iv=setInterval(()=>{if(window.__cb!==tok){clearInterval(iv);return}const r=Math.max(0,end-Date.now());if(r<=0)return fin();const t=$("tm"),bar=$("spbar");if(t)t.textContent=Math.ceil(r/1e3);if(bar)bar.style.width=(100*r/D)+"%";if(bar&&r<1e4)bar.classList.add("low")},200);window.pkStop=()=>{done=true;clearInterval(iv)};
+  let chip="";
+  const ask=()=>{if(done)return;const s=spec(ks[Math.floor(Math.random()*ks.length)]);lock=false;const r=Math.max(0,end-Date.now());
+    c.innerHTML='<div class="rvh"><div class="rvp spt"><i id="spbar" style="width:'+(100*r/D)+'%"></i></div><b class="rvn">⏱ <span id="tm">'+Math.ceil(r/1e3)+'</span> s</b><b class="rvc">⚡ '+ok+"</b></div>"+'<div class="tag">'+L2("Sprint · ","Sprint · ")+s.tag+'</div><div class="big rvq" id="lcd">'+s.big+'</div><div class="rvr"><input type="text" id="in" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="next" '+(s.num?'inputmode="numeric" '+(s.id?'data-len="'+String(s.id).length+'" ':""):"")+(s.nm?'data-nm="'+esc(s.nm)+'" ':"")+'placeholder="'+s.ph+'"><button id="ok2">➜</button></div><div id="out"></div>';
+    if(chip){$("out").innerHTML=chip;chip="";setTimeout(()=>{const k=document.querySelector(".rvchip");if(k)k.remove()},900)}
+    const inp=$("in");inp.focus({preventScroll:true});
+    const go=()=>{const v=inp.value.trim();if(!v||lock||done)return;n++;
+      if(s.ok(v)){ok++;cb++;best=Math.max(best,cb);chip='<div class="res ok rvchip"><b>✓ '+esc(s.ans)+"</b>"+(cb>=3?"<small>🔥 "+cb+"</small>":"")+"</div>";ask()}
+      else{cb=0;lock=true;$("out").innerHTML='<div class="res ko">✗ '+esc(s.ans)+"</div>";setTimeout(ask,800)}};
+    $("ok2").onclick=go;inp.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();go()}}};
+  ask()};
+
+/* ---------- Pokédex : filtres ---------- */
+const MD_F=[["all","Tous","All"],["s0","Pas vus","Not seen"],["s1","En cours","Learning"],["s2","Maîtrisés","Mastered"],["cg","Capturés","Caught"],["sh","Chromatiques","Shinies"]];
+let mdFlt="all";
+function mdApply(){const g=$("g2");if(!g)return;const P=S.pb||{},cg=P.cg||{},sc=P.shc||{};let n=0;
+  g.querySelectorAll(".tl").forEach(t=>{const i=+t.dataset.i,ok=mdFlt==="all"||(mdFlt==="cg"?cg[i]:mdFlt==="sh"?sc[i]:t.classList.contains(mdFlt));t.style.display=ok?"":"none";if(ok)n++;
+    t.classList.toggle("cgd",!!cg[i]);t.classList.toggle("shd",!!sc[i])});
+  const cnt=$("mdfn");if(cnt)cnt.textContent=n}
+(function(){const b0=browse;browse=function(){b0.apply(this,arguments);const g=$("g2");if(!g)return;const E=EN();
+  const bar=document.createElement("div");bar.className="mdf";bar.setAttribute("data-notr","1");
+  bar.innerHTML=MD_F.map(f=>'<button class="sec'+(mdFlt===f[0]?" on":"")+'" data-f="'+f[0]+'">'+(E?f[2]:f[1])+"</button>").join("")+'<small><b id="mdfn"></b> Pokémon</small>';
+  g.parentNode.insertBefore(bar,g);bar.querySelectorAll("button").forEach(b=>b.onclick=()=>{mdFlt=b.dataset.f;bar.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));mdApply();window.uxSnd&&uxSnd("pop")});
+  new MutationObserver(mdApply).observe(g,{childList:true});mdApply()};
+})();
+
+/* ---------- Quêtes du jour : 17 types, choisies parmi les systèmes débloqués ---------- */
+const QB=(fr,en)=>({toString:()=>L2(fr,en)});
+const qAdv=()=>!!(S.ul&&S.ul.adv&&S.pb&&S.pb.av>=0&&S.pb.t&&S.pb.t.length);
+QS.push(["bq10",QB("Répondre juste 10 fois en combat","Answer right 10 times in battle"),60,()=>dqo().bq||0,10,qAdv],
+  ["zx3",QB("Explorer 3 zones différentes","Explore 3 different zones"),60,()=>(dqo().zx||[]).length,3,qAdv],
+  ["trw1",QB("Battre un dresseur","Beat a trainer"),50,()=>dqo().trw||0,1,qAdv],
+  ["ev1",QB("Faire évoluer un Pokémon","Evolve a Pokémon"),80,()=>dqo().ev||0,1,()=>qAdv()&&S.pb.t.some(m=>pbEvoT(m))],
+  ["hv1",QB("Récolter la ville (Récolte du jour)","Collect the town (daily harvest)"),40,()=>dqo().hv||0,1,()=>lvl("pen")||lvl("bay")||lvl("mus")],
+  ["vi2",QB("Reconnaître 2 visiteurs en ville","Recognize 2 visitors in town"),45,()=>dqo().vi||0,2,()=>S.ul&&S.ul.jeu],
+  ["lo1",QB("Jouer au Loto Pokédex","Play the Pokédex Lotto"),30,()=>dqo().lo||0,1,()=>typeof guL==="function"&&guL()>=3],
+  ["bc10",QB("Faire une série de 10 en révision","Get a 10 streak in review"),50,()=>dqo().bc||0,10,()=>true],
+  ["du1",QB("Battre Blue en duel","Beat Blue in a duel"),70,()=>dqo().du||0,1,()=>S.ul&&S.ul.jeu]);
+for(const q of QS)if(!q[5])q[5]=["dw1","tw3","bw2","cp1"].includes(q[0])?qAdv:()=>true;
+function qPick(){const av=QS.map((q,i)=>[q,i]).filter(([q])=>{try{return q[5]()}catch(e){return false}}).map(x=>x[1]);
+  let s=(T()*2654435761)%4294967296;const r=()=>(s=(s*1103515245+12345)%2147483648)/2147483648,a=av.slice();
+  for(let k=a.length-1;k>0;k--){const j=Math.floor(r()*(k+1));[a[k],a[j]]=[a[j],a[k]]}
+  return a.slice(0,3).sort((x,y)=>x-y)}
+
+/* ---------- Pokémart et Sac au niveau de la Boutique (cartes, bulles 3D) ---------- */
+const MD_IC={pb:"#e33b3b",gb:"#3a7fd6",ub:"#e2b200",mb:"#9b4bd6",rd:"#2fa35a",po:"#c25bd6",sp:"#d65b9a",hp:"#d6455b",ah:"#e88a2a",rv:"#2fb4c9"};
+const mdIc=k=>MD_IC[k]||(k==="s10"?"#7a7f99":"#8a6a4a");
+const mdDesc=(k,P)=>pbIsSt(k)?(k==="s10"?L2("Évolution par échange","Trade evolution"):L2("Pierre d'évolution","Evolution stone")):k==="rd"?L2("×4 chromatique pendant 20 rencontres","×4 shiny for 20 encounters")+(P.rad?" ("+P.rad+")":""):/b$/.test(k)?L2("Capture ×","Catch ×")+PB_IT[k][3]:k==="ah"?L2("Soigne le statut","Cures status"):k==="rv"?L2("Ranime à 50 %","Revives at 50%"):L2("Soigne "+PB_IT[k][3]+" PV","Heals "+PB_IT[k][3]+" HP");
+pbMart=function(msg){const P=pbS(),c=$("card"),E=EN(),sale=typeof dyPrice==="function"&&dyPrice()<1;window.__cb={};
+  c.innerHTML='<div class="pbh uxs" data-notr="1" data-scr="mart">'+(msg?'<div class="res">'+esc(msg)+"</div>":"")+'<div class="uxhero tilt3d"><div class="uxcoin3d"><i></i></div><div><small>🛒 '+L2("Pokémart","Poké Mart")+"</small><b>"+S.g.co+" 🪙</b><small>"+(sale?"🏷 "+L2("Soldes du jeudi : −30 %","Thursday sale: −30%"):L2("Tout pour ton Aventure","Everything for your Adventure"))+"</small></div></div>"+
+    '<div class="uxgrid">'+PB_MART.map(k=>{const p=pbIP(k),n=k==="rd"?(P.rad||0):(P.bag[k]||0);return'<div class="uxit tilt3d" style="--c:'+mdIc(k)+'"><div class="uxorb"><span>'+pbII(k)+"</span></div>"+(n?'<em class="uxn">'+(k==="rd"?"📡 ":"×")+n+"</em>":"")+"<b>"+esc(pbIN(k))+"</b><small>"+esc(mdDesc(k,P))+'</small><div class="uxrow"><button class="pbbuy uxbuy" data-k="'+k+'" data-n="1"'+(S.g.co<p?" disabled":"")+">🪙 "+p+"</button>"+(/^(pb|gb|ub|po)$/.test(k)?'<button class="sec pbbuy uxeq" data-k="'+k+'" data-n="5"'+(S.g.co<p*5?" disabled":"")+">×5</button>":"")+"</div></div>"}).join("")+'</div><button class="sec" id="pbb">← '+L2("Retour","Back")+"</button></div>";
+  c.querySelectorAll(".pbbuy").forEach(b=>b.onclick=()=>{const k=b.dataset.k,n=+b.dataset.n,p=pbIP(k)*n;if(S.g.co<p)return;S.g.co-=p;if(k==="rd")P.rad=(P.rad||0)+20*n;else P.bag[k]=(P.bag[k]||0)+n;save();pbMart(L2("Acheté : ","Bought: ")+pbIN(k)+" ×"+n)});
+  $("pbb").onclick=()=>adv()};
+(function(){const b0=pbBag;pbBag=function(msg,sel){if(sel)return b0.apply(this,arguments);const P=pbS(),c=$("card"),ks=Object.keys(P.bag).filter(k=>P.bag[k]>0&&(PB_IT[k]||pbIsSt(k)));window.__cb={};
+  c.innerHTML='<div class="pbh uxs" data-notr="1" data-scr="bag">'+(msg?'<div class="res">'+esc(msg)+"</div>":"")+'<div class="uxqh"><b>🎒 '+L2("Sac","Bag")+"</b><small>"+ks.reduce((a,k)=>a+P.bag[k],0)+L2(" objets"," items")+"</small></div>"+
+    (ks.length?'<div class="uxgrid">'+ks.map(k=>'<div class="uxit tilt3d" style="--c:'+mdIc(k)+'"><div class="uxorb"><span>'+pbII(k)+'</span></div><em class="uxn">×'+P.bag[k]+"</em><b>"+esc(pbIN(k))+"</b><small>"+esc(mdDesc(k,P))+'</small><div class="uxrow">'+(/b$/.test(k)?'<button class="sec" disabled>'+L2("En combat","In battle")+"</button>":'<button class="pbuse" data-k="'+k+'">'+L2("Utiliser","Use")+"</button>")+"</div></div>").join("")+"</div>":'<p class="sub">'+L2("Ton sac est vide. Passe au Pokémart.","Your bag is empty. Visit the Poké Mart.")+"</p>")+
+    '<button class="sec" id="pbm3">🛒 '+L2("Pokémart","Poké Mart")+'</button><button class="sec" id="pbb">← '+L2("Retour","Back")+"</button></div>";
+  c.querySelectorAll(".pbuse").forEach(b=>b.onclick=()=>pbBag("",b.dataset.k));$("pbb").onclick=()=>adv();$("pbm3").onclick=()=>pbMart()}})();
 /* ===== Solidité (src/core.js, chargé en dernier) =====
    1. Réparation automatique de la sauvegarde au démarrage (champs manquants ou abîmés).
    2. Journal des erreurs (S.er, 15 dernières) + bulle discrète, au lieu d'un écran figé.
@@ -3307,7 +3435,17 @@ try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persisted(
 
 /* Boutons de navigation : relier une seule fois, ici (fichier chargé en dernier), aux versions finales des écrans.
    (app.js les lie au démarrage aux fonctions d'origine ; les modules suivants les remplacent : settings, statsView…) */
-(function(){const r=(id,f)=>{const b=$(id);if(b)b.onclick=nav(f)};r("gr",()=>settings());r("gs",()=>statsView())})();
+(function(){const r=(id,f)=>{const b=$(id);if(b)b.onclick=nav(f)};r("gr",()=>settings());r("gs",()=>statsView());r("gd",()=>browse())})();
+
+/* Accessibilité : nom lisible pour les boutons qui n'ont qu'une icône ; pas d'inclinaison 3D si l'utilisateur réduit les animations */
+(function(){const lab={gt:["Thème clair/sombre","Light/dark theme"],gsn:["Sons","Sounds"],gos:["Musique","Music"],dyck:["Jour et heure","Day and time"]};
+  const apply=()=>{for(const id in lab){const b=$(id);if(b&&!b.getAttribute("aria-label"))b.setAttribute("aria-label",lab[id][EN()?1:0])}
+    document.querySelectorAll("#pnav button").forEach(b=>{const s=b.querySelector("span");if(s)b.setAttribute("aria-label",s.textContent)})};
+  setTimeout(apply,1200);try{if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.addEventListener("pointermove",e=>e.stopPropagation(),true)}catch(e){}})();
+/* Synchro : petite pastille sur l'horloge (vert = à jour, doré = en cours, rouge = problème) + vérification toutes les 5 min */
+(function(){const dot=()=>{const c=$("dyck");if(!c)return;let d=c.querySelector(".sync-dot");if(typeof syOn!=="function"||!syOn()){if(d)d.remove();return}
+    if(!d){d=document.createElement("i");d.className="sync-dot";c.style.position="relative";c.appendChild(d)}d.className="sync-dot"+(syErr?" err":syBusy?" busy":"")};
+  setInterval(dot,3000);setInterval(()=>{if(typeof syOn==="function"&&syOn()&&document.visibilityState==="visible")syPull(1)},5*60*1000)})();
 </script>
 
 </body>

@@ -1,7 +1,7 @@
 /* Pokédex Mémoire hors connexion : tout est enregistré à la première ouverture, puis mis à jour en arrière-plan. */
-const V = "pokedex-memoire-99dc4a35db";
+const V = "pokedex-memoire-750c3e253f";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./maskable-512.png", "./apple-touch-icon.png"];
-const HDC = "pokedex-hd-v3"; // sprites HD : cache séparé, gardé d'une version à l'autre
+const HDC = "pokedex-hd-b62f82d108"; // sprites HD : cache séparé, gardé d'une version à l'autre
 const FONTS = /^https:\/\/fonts\.(googleapis|gstatic)\.com\//;
 
 self.addEventListener("install", e => {
