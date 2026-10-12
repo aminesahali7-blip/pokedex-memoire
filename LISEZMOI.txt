@@ -8,4 +8,4 @@ Synchronisation entre appareils (facultatif) :
 - Elle utilise une petite fonction Netlify (dossier netlify/, package.json, netlify.toml) qui n'est PAS installée par le glisser-déposer.
 - Le plus simple : mets ce dossier dans un dépôt GitHub, puis sur Netlify « Add new site → Import from Git ». Netlify installe la fonction tout seul à chaque mise à jour du dépôt.
 - Ou avec Netlify CLI : `npm i -g netlify-cli`, puis dans ce dossier `netlify deploy --prod`.
-- Ensuite, dans l'appli : Réglages → ☁️ Synchronisation → Activer, et entre la même clé sur ton autre appareil.
+- Ensuite, dans l'appli : Réglages → ☁️ Synchronisation → Activer, et entre la même clé sur ton autre appareil..
