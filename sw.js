@@ -1,5 +1,5 @@
 /* Pokédex Mémoire hors connexion : tout est enregistré à la première ouverture, puis mis à jour en arrière-plan. */
-const V = "pokedex-memoire-750c3e253f";
+const V = "pokedex-memoire-de12425fc6";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./maskable-512.png", "./apple-touch-icon.png"];
 const HDC = "pokedex-hd-b62f82d108"; // sprites HD : cache séparé, gardé d'une version à l'autre
 const FONTS = /^https:\/\/fonts\.(googleapis|gstatic)\.com\//;
@@ -27,7 +27,7 @@ self.addEventListener("fetch", e => {
     e.respondWith(caches.open(V).then(async c => {
       try {
         const res = await Promise.race([fetch(r), new Promise((_, no) => setTimeout(no, 4000))]);
-        if (res && res.ok && res.status === 200) c.put(r, res.clone());
+        if (res && res.ok && res.status === 200) c.put("./index.html", res.clone()); // une seule copie, quelle que soit l'adresse (?utm=…)
         return res;
       } catch (_) {
         return (await c.match(r, { ignoreSearch: true })) || (await c.match("./index.html")) || Response.error();
